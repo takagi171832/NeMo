@@ -179,3 +179,14 @@ examples/neural_graphs/*.yml
 .hydra/
 nemo_experiments/
 
+nemo_env
+nemo_env_v2
+li_tmp
+manifests
+
+boost_1_80_0/
+decoders/openfst-1.6.3/
+decoders/kenlm/
+decoders/text/
+models/
+.bert/
