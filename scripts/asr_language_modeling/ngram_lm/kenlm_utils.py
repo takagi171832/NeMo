@@ -95,6 +95,7 @@ def setup_tokenizer(nemo_model_file):
         tokenizer_nemo = model.tokenizer
 
     del model
+    print(tokenizer_nemo.vocab_size)
 
     return tokenizer_nemo, encoding_level, is_aggregate_tokenizer
 

@@ -16,7 +16,7 @@
 # Use this script to install KenLM, OpenSeq2Seq decoder, Flashlight decoder
 shopt -s expand_aliases
 
-NEMO_PATH=/workspace/nemo  # Path to NeMo folder: /workspace/nemo if you use NeMo/Dockerfile
+NEMO_PATH=/home/takagi/NeMo/  # Path to NeMo folder: /workspace/nemo if you use NeMo/Dockerfile
 if [ "$#" -eq 1 ]; then
   NEMO_PATH=$1
 fi
@@ -57,13 +57,13 @@ cp $NEMO_PATH/scripts/installers/setup_os2s_decoders.py ./setup.py
 # install KenLM
 cd $NEMO_PATH/decoders/kenlm/build && cmake -DKENLM_MAX_ORDER=$KENLM_MAX_ORDER .. && make -j2
 cd $NEMO_PATH/decoders/kenlm
-python setup.py install --max_order=$KENLM_MAX_ORDER
+sudo python3 setup.py install --max_order=$KENLM_MAX_ORDER
 export KENLM_LIB=$NEMO_PATH/decoders/kenlm/build/bin
 export KENLM_ROOT=$NEMO_PATH/decoders/kenlm
 cd ..
 
 # install Flashlight
 git clone https://github.com/flashlight/text && cd text
-python setup.py bdist_wheel
+sudo python3 setup.py bdist_wheel
 pip install dist/*.whl
 cd ..

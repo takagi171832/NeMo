@@ -190,3 +190,6 @@ decoders/kenlm/
 decoders/text/
 models/
 .bert/
+boost_1_80_0.tar.bz2
+csj2gram.arpa
+dataset/

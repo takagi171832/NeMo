@@ -285,6 +285,7 @@ class BeamCTCInfer(AbstractBeamCTCInfer):
             # Pack the result
             if self.return_best_hypothesis and isinstance(packed_result[0], rnnt_utils.NBestHypotheses):
                 packed_result = [res.n_best_hypotheses[0] for res in packed_result]  # type: Hypothesis
+        
 
         return (packed_result,)
 
@@ -379,7 +380,6 @@ class BeamCTCInfer(AbstractBeamCTCInfer):
             # Wrap the result in NBestHypothesis.
             hypotheses = rnnt_utils.NBestHypotheses(hypotheses)
             nbest_hypotheses.append(hypotheses)
-
         return nbest_hypotheses
 
     @torch.no_grad()
