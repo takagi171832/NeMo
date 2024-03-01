@@ -4,11 +4,11 @@ from unigram_lm import JapaneseCharacterNgramModel
 import nemo.collections.asr as nemo_asr
 
 # 言語モデルのボキャブラリを取得します。
-asr_model = nemo_asr.models.EncDecCTCModelBPE.restore_from("/home/takagi/NeMo/models/ASR/uni_LSTM_8_bpe_CSJ.nemo")
-vocab = asr_model.decoder.vocabulary
+asr_model = nemo_asr.models.EncDecCTCModel.restore_from("/home/takagi/NeMo/models/ASR/CSJ_APS/LSTM-CTC-APS.nemo")
+vocab = asr_model.cfg.labels
 
 # 訓練データを用意します。
-train_path = "/home/takagi/NeMo/manifests/laboroTV/train_nodev_sp/train_nodev_sp_manifest.json"
+train_path = "/home/takagi/NeMo/manifests/CSJ/SPS/SPS_train.json"
 with open(train_path, "r") as json_r:
     training_text = ""
     for line in json_r:
@@ -36,5 +36,5 @@ for char in input_char:
 
 
 
-with open("/home/takagi/NeMo/models/LM/laboro1gram.pkl", "wb") as f:
+with open("/home/takagi/NeMo/models/LM/CSJ/SPS/sps_1gram.pkl", "wb") as f:
     pickle.dump(lm, f)

@@ -44,19 +44,19 @@ cpdef beamsearch_cy(list logits_batch,
                                           float add_weight, 
                                           float sub_weight, 
                                           int add_ngram, 
-                                          int sub_ngram):
-    cdef int cut_off_n = 100
+                                          int sub_ngram,
+                                          int beam_width
+                                          ):
     cdef list batch_new_scores = []
     cdef int max_ngram = max(add_ngram, sub_ngram)
     cdef int blank_idx = len(vocab)
-    cdef int beam_width = 35
     cdef int T, V, t, v
     cdef float new_score, add_score, sub_score
     cdef BeamList last, curr
     cdef tuple context, new_label, label
-    cdef cnp.ndarray top_n_idx
     cdef str current_frame_char
     cdef int current_frame_index, pred_frame_index
+    cdef float proon = 0.01
 
     for logits in logits_batch:
         logits = np.array(logits)
@@ -69,11 +69,10 @@ cpdef beamsearch_cy(list logits_batch,
         T, V = logits.shape
         for t in range(T):
             curr = BeamList()
-            top_n_idx = np.argsort(logits[t])[::-1][:cut_off_n]
             for label in last.sort()[:beam_width]:
-                for v in top_n_idx:
+                for v in range(V):
                     current_frame_index = v
-                    if current_frame_index == 1:
+                    if logits[t, current_frame_index] < proon:
                         continue
                     current_frame_char = "<blank>" if current_frame_index == blank_idx else vocab[current_frame_index]
                     pred_frame_index = blank_idx

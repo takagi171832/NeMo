@@ -56,13 +56,14 @@ def get_parser():
     parser.add_argument("--cache_path", type=str, default="/home/takagi/NeMo/dataset/output/CSJ_to_laboro/tedx10k_chache", help="キャッシュファイルのパス")
     parser.add_argument("--use_unigram_add", action="store_true", help="加算用言語モデルにunigramを使用するかどうか")
     parser.add_argument("--use_unigram_sub", action="store_true", help="減算用言語モデルにunigramを使用するかどうか")
-    parser.add_argument("--add_lm", type=str, default="/home/takagi/NeMo/models/LM/cy_laboro1gram.pkl", help="加算用言語モデルのパス")
-    parser.add_argument("--sub_lm", type=str, default="/home/takagi/NeMo/models/LM/cy_csj1gram.pkl", help="減算用言語モデルのパス")
-    parser.add_argument("--add_weight", type=List[float] , default=[0.1], help="加算用言語モデルの重み")
-    parser.add_argument("--sub_weight", type=List[float] , default=[0.3], help="減算用言語モデルの重み")
+    parser.add_argument("--add_lm", type=str, default="/home/takagi/NeMo/models/LM/CSJ/SPS/sps_1gram.pkl", help="加算用言語モデルのパス")
+    parser.add_argument("--sub_lm", type=str, default="/home/takagi/NeMo/models/LM/CSJ/APS/aps_1gram.pkl", help="減算用言語モデルのパス")
+    parser.add_argument("--add_weight", type=List[float] , default=[0.0,0.1,0.3,0.5,0.7], help="加算用言語モデルの重み")
+    parser.add_argument("--sub_weight", type=List[float] , default=[0.0,0.1,0.3,0.5,0.7], help="減算用言語モデルの重み")
     parser.add_argument("--batch_size", type=int, default=25, help="バッチサイズ")
     parser.add_argument("--test_manifest", type=str, default="/home/takagi/NeMo/manifests/laboroTV/tedx-jp-10k/tedx-jp-10k_manifest.json", help="テストデータのパス")
     parser.add_argument("--output_folder", type=str, default="/home/takagi/NeMo/dataset/output/dra_result_beam/", help="出力先のフォルダ")
+    parser.add_argument("--beam_width", type=int, default=20, help="ビーム幅")
     return parser.parse_args()
 
 def batch_ngram_lm_rescoring(logits_batch, vocab, lm_add, lm_sub, add_weight, sub_weight, add_ngram, sub_ngram):
@@ -229,28 +230,11 @@ def batch_beamsearch_ngram_lm_rescoring(logits_batch, vocab, lm_add, lm_sub, add
     return batch_new_scores
 
 def process_batch(batch_data):
-    i, probs, vocab, lm_add, lm_sub, add_weight, sub_weight, add_ngram, sub_ngram = batch_data
+    i, probs, vocab, lm_add, lm_sub, add_weight, sub_weight, add_ngram, sub_ngram, beam_width = batch_data
     rescored_text = beamsearch_cy(
-        probs, list(vocab), lm_add, lm_sub, add_weight, sub_weight, add_ngram, sub_ngram
+        probs, list(vocab), lm_add, lm_sub, add_weight, sub_weight, add_ngram, sub_ngram, beam_width
     )
     return i, rescored_text
-
-def batch_prob_to_str(vocab, probs_batch):
-    batch_predicted_text = []
-    predicted_ids_batch = np.argmax(probs_batch, axis=-1)
-    for predicted_ids in predicted_ids_batch:
-        pred = -1
-        predicted_ids_list = []
-        for p in predicted_ids:
-            if not p == pred:
-                if p == len(vocab):
-                    predicted_ids_list.append("<blank>")
-                else:
-                    predicted_ids_list.append(vocab[int(p)])
-            pred = p
-        predicted_text = "".join([i for i in predicted_ids_list if not i == "<blank>"])
-        batch_predicted_text.append(predicted_text)
-    return batch_predicted_text
 
 def prob_to_str(vocab, probs):
     predicted_ids = np.argmax(probs, axis=-1)
@@ -264,14 +248,12 @@ def prob_to_str(vocab, probs):
                 predicted_ids_list.append(vocab[int(p)])
         pred = p
     predicted_text = "".join([i for i in predicted_ids_list if not i == "<blank>"])
-    #bpeのため、最初の文字を削除する。
-    predicted_text = predicted_text[1:]
     return predicted_text
 
 def main():
     args = get_parser()
     # モデルをロードする。
-    asr_model = EncDecCTCModel.restore_from(args.asr_model)
+    asr_model = EncDecCTCModel.restore_from(args.asr_model, map_location="cpu")
     # テストデータのマニフェストからテキストを取得する。
     # 抜き出したテキストはListに格納する。
     target_transcript = []
@@ -329,7 +311,8 @@ def main():
         sub_ngram = lm_sub.order
 
     # 音声認識モデルの語彙を取得する。
-    vocab = asr_model.decoder.vocabulary
+    vocab = asr_model.cfg.labels
+    beam_width = args.beam_width
 
     #結果を出力するファイルを作成する。
     #ファイル名はadd_lmとsub_lmのngramの次数とする。
@@ -343,6 +326,7 @@ def main():
         f.write(f"add_ngram: {add_ngram}, sub_ngram: {sub_ngram}\n")
         f.write(f"add_lm: {args.add_lm}\n")
         f.write(f"sub_lm: {args.sub_lm}\n")
+        f.write(f"beam_width: {args.beam_width}\n")
 
     # 加算重みのをグリッドサーチする。
     for sub_weight in args.sub_weight:
@@ -351,9 +335,10 @@ def main():
             results = []
             all_rescored_text = []
             batch_data = [
-                (i, all_probs[i * args.batch_size : (i + 1) * args.batch_size], vocab, lm_add, lm_sub, add_weight, sub_weight, add_ngram, sub_ngram)
+                (i, all_probs[i * args.batch_size : (i + 1) * args.batch_size], vocab, lm_add, lm_sub, add_weight, sub_weight, add_ngram, sub_ngram, beam_width)
                 for i in range(int(math.ceil(len(all_probs) / args.batch_size)))
             ]
+            print("ここ？")
             # マルチプロセッシングとtqdmの組み合わせ
             with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
                 with tqdm(total=len(batch_data)) as pbar:
@@ -378,7 +363,6 @@ def main():
                 f.write(
                     f"add_weight: {add_weight}, sub_weight: {sub_weight}, cer: {cer}, ins_rate: {ins_rate}, del_rate: {del_rate}, sub_rate: {sub_rate}\n"
                 )
-
 
 if __name__ == "__main__":
     main()

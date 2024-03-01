@@ -1680,21 +1680,18 @@ static CYTHON_INLINE PyObject *__Pyx_GetAttr(PyObject *, PyObject *);
 /* GetAttr3.proto */
 static CYTHON_INLINE PyObject *__Pyx_GetAttr3(PyObject *, PyObject *, PyObject *);
 
-/* ObjectGetItem.proto */
-#if CYTHON_USE_TYPE_SLOTS
-static CYTHON_INLINE PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject* key);
-#else
-#define __Pyx_PyObject_GetItem(obj, key)  PyObject_GetItem(obj, key)
-#endif
-
 /* SliceObject.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyObject_GetSlice(
         PyObject* obj, Py_ssize_t cstart, Py_ssize_t cstop,
         PyObject** py_start, PyObject** py_stop, PyObject** py_slice,
         int has_cstart, int has_cstop, int wraparound);
 
-/* ExtTypeTest.proto */
-static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type);
+/* ObjectGetItem.proto */
+#if CYTHON_USE_TYPE_SLOTS
+static CYTHON_INLINE PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject* key);
+#else
+#define __Pyx_PyObject_GetItem(obj, key)  PyObject_GetItem(obj, key)
+#endif
 
 /* IncludeStringH.proto */
 #include <string.h>
@@ -2049,7 +2046,7 @@ static PyTypeObject *__pyx_ptype_5numpy_ufunc = 0;
 /* Module declarations from 'beamsearch_cython' */
 static PyTypeObject *__pyx_ptype_17beamsearch_cython_BeamEntry = 0;
 static PyTypeObject *__pyx_ptype_17beamsearch_cython_BeamList = 0;
-static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *, PyObject *, PyObject *, PyObject *, float, float, int, int, int __pyx_skip_dispatch); /*proto*/
+static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *, PyObject *, PyObject *, PyObject *, float, float, int, int, int, int __pyx_skip_dispatch); /*proto*/
 static PyObject *__pyx_f_17beamsearch_cython___pyx_unpickle_BeamList__set_state(struct __pyx_obj_17beamsearch_cython_BeamList *, PyObject *); /*proto*/
 #define __Pyx_MODULE_NAME "beamsearch_cython"
 extern int __pyx_module_is_main_beamsearch_cython;
@@ -2060,8 +2057,8 @@ static PyObject *__pyx_builtin_sorted;
 static PyObject *__pyx_builtin_range;
 static PyObject *__pyx_builtin_ImportError;
 static const char __pyx_k_s[] = "<s>";
-static const char __pyx_k__3[] = " ";
-static const char __pyx_k__4[] = "";
+static const char __pyx_k__2[] = " ";
+static const char __pyx_k__3[] = "";
 static const char __pyx_k_np[] = "np";
 static const char __pyx_k_key[] = "key";
 static const char __pyx_k_log[] = "log";
@@ -2091,7 +2088,6 @@ static const char __pyx_k_pickle[] = "pickle";
 static const char __pyx_k_reduce[] = "__reduce__";
 static const char __pyx_k_sorted[] = "sorted";
 static const char __pyx_k_update[] = "update";
-static const char __pyx_k_argsort[] = "argsort";
 static const char __pyx_k_context[] = "context";
 static const char __pyx_k_reverse[] = "reverse";
 static const char __pyx_k_BeamList[] = "BeamList";
@@ -2106,6 +2102,7 @@ static const char __pyx_k_pyx_state[] = "__pyx_state";
 static const char __pyx_k_reduce_ex[] = "__reduce_ex__";
 static const char __pyx_k_sub_ngram[] = "sub_ngram";
 static const char __pyx_k_add_weight[] = "add_weight";
+static const char __pyx_k_beam_width[] = "beam_width";
 static const char __pyx_k_pyx_result[] = "__pyx_result";
 static const char __pyx_k_pyx_vtable[] = "__pyx_vtable__";
 static const char __pyx_k_sub_weight[] = "sub_weight";
@@ -2131,12 +2128,12 @@ static PyObject *__pyx_n_s_ImportError;
 static PyObject *__pyx_kp_s_Incompatible_checksums_0x_x_vs_0;
 static PyObject *__pyx_n_s_PickleError;
 static PyObject *__pyx_n_s_SCORE;
+static PyObject *__pyx_kp_u__2;
 static PyObject *__pyx_kp_u__3;
-static PyObject *__pyx_kp_u__4;
 static PyObject *__pyx_n_s_add_ngram;
 static PyObject *__pyx_n_s_add_weight;
-static PyObject *__pyx_n_s_argsort;
 static PyObject *__pyx_n_s_array;
+static PyObject *__pyx_n_s_beam_width;
 static PyObject *__pyx_n_s_beamsearch_cython;
 static PyObject *__pyx_kp_s_beamsearch_cython_pyx;
 static PyObject *__pyx_kp_u_blank;
@@ -2210,7 +2207,7 @@ static int __pyx_pf_17beamsearch_cython_8BeamList_7entries_2__set__(struct __pyx
 static int __pyx_pf_17beamsearch_cython_8BeamList_7entries_4__del__(struct __pyx_obj_17beamsearch_cython_BeamList *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_17beamsearch_cython_8BeamList_6__reduce_cython__(struct __pyx_obj_17beamsearch_cython_BeamList *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_17beamsearch_cython_8BeamList_8__setstate_cython__(struct __pyx_obj_17beamsearch_cython_BeamList *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_17beamsearch_cython_2beamsearch_cy(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_logits_batch, PyObject *__pyx_v_vocab, PyObject *__pyx_v_lm_add, PyObject *__pyx_v_lm_sub, float __pyx_v_add_weight, float __pyx_v_sub_weight, int __pyx_v_add_ngram, int __pyx_v_sub_ngram); /* proto */
+static PyObject *__pyx_pf_17beamsearch_cython_2beamsearch_cy(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_logits_batch, PyObject *__pyx_v_vocab, PyObject *__pyx_v_lm_add, PyObject *__pyx_v_lm_sub, float __pyx_v_add_weight, float __pyx_v_sub_weight, int __pyx_v_add_ngram, int __pyx_v_sub_ngram, int __pyx_v_beam_width); /* proto */
 static PyObject *__pyx_pf_17beamsearch_cython_4__pyx_unpickle_BeamList(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_17beamsearch_cython_BeamEntry(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_17beamsearch_cython_BeamList(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -2221,16 +2218,14 @@ static PyObject *__pyx_int_10;
 static PyObject *__pyx_int_100460822;
 static PyObject *__pyx_int_142411213;
 static PyObject *__pyx_int_204353821;
-static PyObject *__pyx_int_neg_1;
 static PyObject *__pyx_tuple_;
-static PyObject *__pyx_slice__2;
+static PyObject *__pyx_tuple__4;
 static PyObject *__pyx_tuple__5;
 static PyObject *__pyx_tuple__6;
 static PyObject *__pyx_tuple__7;
-static PyObject *__pyx_tuple__8;
-static PyObject *__pyx_tuple__10;
-static PyObject *__pyx_codeobj__9;
-static PyObject *__pyx_codeobj__11;
+static PyObject *__pyx_tuple__9;
+static PyObject *__pyx_codeobj__8;
+static PyObject *__pyx_codeobj__10;
 /* Late includes */
 
 /* "beamsearch_cython.pyx":12
@@ -3734,14 +3729,12 @@ static PyObject *__pyx_pf_17beamsearch_cython_8BeamList_8__setstate_cython__(str
  */
 
 static PyObject *__pyx_pw_17beamsearch_cython_3beamsearch_cy(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_logits_batch, PyObject *__pyx_v_vocab, PyObject *__pyx_v_lm_add, PyObject *__pyx_v_lm_sub, float __pyx_v_add_weight, float __pyx_v_sub_weight, int __pyx_v_add_ngram, int __pyx_v_sub_ngram, CYTHON_UNUSED int __pyx_skip_dispatch) {
-  int __pyx_v_cut_off_n;
+static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_logits_batch, PyObject *__pyx_v_vocab, PyObject *__pyx_v_lm_add, PyObject *__pyx_v_lm_sub, float __pyx_v_add_weight, float __pyx_v_sub_weight, int __pyx_v_add_ngram, int __pyx_v_sub_ngram, int __pyx_v_beam_width, CYTHON_UNUSED int __pyx_skip_dispatch) {
   PyObject *__pyx_v_batch_new_scores = 0;
   int __pyx_v_max_ngram;
   int __pyx_v_blank_idx;
-  int __pyx_v_beam_width;
   int __pyx_v_T;
-  CYTHON_UNUSED int __pyx_v_V;
+  int __pyx_v_V;
   int __pyx_v_t;
   int __pyx_v_v;
   float __pyx_v_new_score;
@@ -3752,10 +3745,10 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
   PyObject *__pyx_v_context = 0;
   PyObject *__pyx_v_new_label = 0;
   PyObject *__pyx_v_label = 0;
-  PyArrayObject *__pyx_v_top_n_idx = 0;
   PyObject *__pyx_v_current_frame_char = 0;
   int __pyx_v_current_frame_index;
   int __pyx_v_pred_frame_index;
+  float __pyx_v_proon;
   PyObject *__pyx_v_logits = NULL;
   PyObject *__pyx_v_label_str = NULL;
   PyObject *__pyx_r = NULL;
@@ -3772,13 +3765,13 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
   PyObject *(*__pyx_t_10)(PyObject *);
   Py_ssize_t __pyx_t_11;
   PyObject *(*__pyx_t_12)(PyObject *);
-  Py_ssize_t __pyx_t_13;
-  PyObject *(*__pyx_t_14)(PyObject *);
+  int __pyx_t_13;
+  int __pyx_t_14;
   int __pyx_t_15;
   int __pyx_t_16;
   int __pyx_t_17;
   int __pyx_t_18;
-  PyObject *__pyx_t_19 = NULL;
+  int __pyx_t_19;
   PyObject *__pyx_t_20 = NULL;
   PyObject *__pyx_t_21 = NULL;
   float __pyx_t_22;
@@ -3788,33 +3781,24 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("beamsearch_cy", 0);
 
-  /* "beamsearch_cython.pyx":48
- *                                           int add_ngram,
- *                                           int sub_ngram):
- *     cdef int cut_off_n = 100             # <<<<<<<<<<<<<<
- *     cdef list batch_new_scores = []
- *     cdef int max_ngram = max(add_ngram, sub_ngram)
- */
-  __pyx_v_cut_off_n = 0x64;
-
-  /* "beamsearch_cython.pyx":49
- *                                           int sub_ngram):
- *     cdef int cut_off_n = 100
+  /* "beamsearch_cython.pyx":50
+ *                                           int beam_width
+ *                                           ):
  *     cdef list batch_new_scores = []             # <<<<<<<<<<<<<<
  *     cdef int max_ngram = max(add_ngram, sub_ngram)
  *     cdef int blank_idx = len(vocab)
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_batch_new_scores = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "beamsearch_cython.pyx":50
- *     cdef int cut_off_n = 100
+  /* "beamsearch_cython.pyx":51
+ *                                           ):
  *     cdef list batch_new_scores = []
  *     cdef int max_ngram = max(add_ngram, sub_ngram)             # <<<<<<<<<<<<<<
  *     cdef int blank_idx = len(vocab)
- *     cdef int beam_width = 35
+ *     cdef int T, V, t, v
  */
   __pyx_t_2 = __pyx_v_sub_ngram;
   __pyx_t_3 = __pyx_v_add_ngram;
@@ -3825,31 +3809,31 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
   }
   __pyx_v_max_ngram = __pyx_t_4;
 
-  /* "beamsearch_cython.pyx":51
+  /* "beamsearch_cython.pyx":52
  *     cdef list batch_new_scores = []
  *     cdef int max_ngram = max(add_ngram, sub_ngram)
  *     cdef int blank_idx = len(vocab)             # <<<<<<<<<<<<<<
- *     cdef int beam_width = 35
- *     cdef int T, V, t, v
- */
-  if (unlikely(__pyx_v_vocab == Py_None)) {
-    PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 51, __pyx_L1_error)
-  }
-  __pyx_t_5 = PyList_GET_SIZE(__pyx_v_vocab); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(0, 51, __pyx_L1_error)
-  __pyx_v_blank_idx = __pyx_t_5;
-
-  /* "beamsearch_cython.pyx":52
- *     cdef int max_ngram = max(add_ngram, sub_ngram)
- *     cdef int blank_idx = len(vocab)
- *     cdef int beam_width = 35             # <<<<<<<<<<<<<<
  *     cdef int T, V, t, v
  *     cdef float new_score, add_score, sub_score
  */
-  __pyx_v_beam_width = 35;
+  if (unlikely(__pyx_v_vocab == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
+    __PYX_ERR(0, 52, __pyx_L1_error)
+  }
+  __pyx_t_5 = PyList_GET_SIZE(__pyx_v_vocab); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_v_blank_idx = __pyx_t_5;
+
+  /* "beamsearch_cython.pyx":59
+ *     cdef str current_frame_char
+ *     cdef int current_frame_index, pred_frame_index
+ *     cdef float proon = 0.01             # <<<<<<<<<<<<<<
+ * 
+ *     for logits in logits_batch:
+ */
+  __pyx_v_proon = 0.01;
 
   /* "beamsearch_cython.pyx":61
- *     cdef int current_frame_index, pred_frame_index
+ *     cdef float proon = 0.01
  * 
  *     for logits in logits_batch:             # <<<<<<<<<<<<<<
  *         logits = np.array(logits)
@@ -4027,7 +4011,7 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
  *         T, V = logits.shape
  *         for t in range(T):             # <<<<<<<<<<<<<<
  *             curr = BeamList()
- *             top_n_idx = np.argsort(logits[t])[::-1][:cut_off_n]
+ *             for label in last.sort()[:beam_width]:
  */
     __pyx_t_2 = __pyx_v_T;
     __pyx_t_4 = __pyx_t_2;
@@ -4038,8 +4022,8 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
  *         T, V = logits.shape
  *         for t in range(T):
  *             curr = BeamList()             # <<<<<<<<<<<<<<
- *             top_n_idx = np.argsort(logits[t])[::-1][:cut_off_n]
  *             for label in last.sort()[:beam_width]:
+ *                 for v in range(V):
  */
       __pyx_t_8 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_17beamsearch_cython_BeamList)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 71, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
@@ -4049,188 +4033,131 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
       /* "beamsearch_cython.pyx":72
  *         for t in range(T):
  *             curr = BeamList()
- *             top_n_idx = np.argsort(logits[t])[::-1][:cut_off_n]             # <<<<<<<<<<<<<<
- *             for label in last.sort()[:beam_width]:
- *                 for v in top_n_idx:
- */
-      __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 72, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_argsort); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 72, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_6);
-      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __pyx_t_7 = __Pyx_GetItemInt(__pyx_v_logits, __pyx_v_t, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 72, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_9 = NULL;
-      if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_6))) {
-        __pyx_t_9 = PyMethod_GET_SELF(__pyx_t_6);
-        if (likely(__pyx_t_9)) {
-          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
-          __Pyx_INCREF(__pyx_t_9);
-          __Pyx_INCREF(function);
-          __Pyx_DECREF_SET(__pyx_t_6, function);
-        }
-      }
-      __pyx_t_8 = (__pyx_t_9) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_9, __pyx_t_7) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_7);
-      __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 72, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_8);
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __pyx_t_6 = __Pyx_PyObject_GetItem(__pyx_t_8, __pyx_slice__2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 72, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_6);
-      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __pyx_t_8 = __Pyx_PyObject_GetSlice(__pyx_t_6, 0, __pyx_v_cut_off_n, NULL, NULL, NULL, 0, 1, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 72, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_8);
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      if (!(likely(((__pyx_t_8) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_8, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 72, __pyx_L1_error)
-      __Pyx_XDECREF_SET(__pyx_v_top_n_idx, ((PyArrayObject *)__pyx_t_8));
-      __pyx_t_8 = 0;
-
-      /* "beamsearch_cython.pyx":73
- *             curr = BeamList()
- *             top_n_idx = np.argsort(logits[t])[::-1][:cut_off_n]
  *             for label in last.sort()[:beam_width]:             # <<<<<<<<<<<<<<
- *                 for v in top_n_idx:
+ *                 for v in range(V):
  *                     current_frame_index = v
  */
-      __pyx_t_8 = ((struct __pyx_vtabstruct_17beamsearch_cython_BeamList *)__pyx_v_last->__pyx_vtab)->sort(__pyx_v_last, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 73, __pyx_L1_error)
+      __pyx_t_8 = ((struct __pyx_vtabstruct_17beamsearch_cython_BeamList *)__pyx_v_last->__pyx_vtab)->sort(__pyx_v_last, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 72, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_6 = __Pyx_PyObject_GetSlice(__pyx_t_8, 0, __pyx_v_beam_width, NULL, NULL, NULL, 0, 1, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 73, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_6);
+      __pyx_t_7 = __Pyx_PyObject_GetSlice(__pyx_t_8, 0, __pyx_v_beam_width, NULL, NULL, NULL, 0, 1, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 72, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      if (likely(PyList_CheckExact(__pyx_t_6)) || PyTuple_CheckExact(__pyx_t_6)) {
-        __pyx_t_8 = __pyx_t_6; __Pyx_INCREF(__pyx_t_8); __pyx_t_11 = 0;
+      if (likely(PyList_CheckExact(__pyx_t_7)) || PyTuple_CheckExact(__pyx_t_7)) {
+        __pyx_t_8 = __pyx_t_7; __Pyx_INCREF(__pyx_t_8); __pyx_t_11 = 0;
         __pyx_t_12 = NULL;
       } else {
-        __pyx_t_11 = -1; __pyx_t_8 = PyObject_GetIter(__pyx_t_6); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 73, __pyx_L1_error)
+        __pyx_t_11 = -1; __pyx_t_8 = PyObject_GetIter(__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 72, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
-        __pyx_t_12 = Py_TYPE(__pyx_t_8)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 73, __pyx_L1_error)
+        __pyx_t_12 = Py_TYPE(__pyx_t_8)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 72, __pyx_L1_error)
       }
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       for (;;) {
         if (likely(!__pyx_t_12)) {
           if (likely(PyList_CheckExact(__pyx_t_8))) {
             if (__pyx_t_11 >= PyList_GET_SIZE(__pyx_t_8)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_6 = PyList_GET_ITEM(__pyx_t_8, __pyx_t_11); __Pyx_INCREF(__pyx_t_6); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 73, __pyx_L1_error)
+            __pyx_t_7 = PyList_GET_ITEM(__pyx_t_8, __pyx_t_11); __Pyx_INCREF(__pyx_t_7); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 72, __pyx_L1_error)
             #else
-            __pyx_t_6 = PySequence_ITEM(__pyx_t_8, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 73, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_6);
+            __pyx_t_7 = PySequence_ITEM(__pyx_t_8, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 72, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_7);
             #endif
           } else {
             if (__pyx_t_11 >= PyTuple_GET_SIZE(__pyx_t_8)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_6 = PyTuple_GET_ITEM(__pyx_t_8, __pyx_t_11); __Pyx_INCREF(__pyx_t_6); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 73, __pyx_L1_error)
+            __pyx_t_7 = PyTuple_GET_ITEM(__pyx_t_8, __pyx_t_11); __Pyx_INCREF(__pyx_t_7); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 72, __pyx_L1_error)
             #else
-            __pyx_t_6 = PySequence_ITEM(__pyx_t_8, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 73, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_6);
+            __pyx_t_7 = PySequence_ITEM(__pyx_t_8, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 72, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_7);
             #endif
           }
         } else {
-          __pyx_t_6 = __pyx_t_12(__pyx_t_8);
-          if (unlikely(!__pyx_t_6)) {
+          __pyx_t_7 = __pyx_t_12(__pyx_t_8);
+          if (unlikely(!__pyx_t_7)) {
             PyObject* exc_type = PyErr_Occurred();
             if (exc_type) {
               if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-              else __PYX_ERR(0, 73, __pyx_L1_error)
+              else __PYX_ERR(0, 72, __pyx_L1_error)
             }
             break;
           }
-          __Pyx_GOTREF(__pyx_t_6);
+          __Pyx_GOTREF(__pyx_t_7);
         }
-        if (!(likely(PyTuple_CheckExact(__pyx_t_6))||((__pyx_t_6) == Py_None)||((void)PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_6)->tp_name), 0))) __PYX_ERR(0, 73, __pyx_L1_error)
-        __Pyx_XDECREF_SET(__pyx_v_label, ((PyObject*)__pyx_t_6));
-        __pyx_t_6 = 0;
+        if (!(likely(PyTuple_CheckExact(__pyx_t_7))||((__pyx_t_7) == Py_None)||((void)PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_7)->tp_name), 0))) __PYX_ERR(0, 72, __pyx_L1_error)
+        __Pyx_XDECREF_SET(__pyx_v_label, ((PyObject*)__pyx_t_7));
+        __pyx_t_7 = 0;
 
-        /* "beamsearch_cython.pyx":74
- *             top_n_idx = np.argsort(logits[t])[::-1][:cut_off_n]
+        /* "beamsearch_cython.pyx":73
+ *             curr = BeamList()
  *             for label in last.sort()[:beam_width]:
- *                 for v in top_n_idx:             # <<<<<<<<<<<<<<
+ *                 for v in range(V):             # <<<<<<<<<<<<<<
  *                     current_frame_index = v
- *                     if current_frame_index == 1:
+ *                     if logits[t, current_frame_index] < proon:
  */
-        if (likely(PyList_CheckExact(((PyObject *)__pyx_v_top_n_idx))) || PyTuple_CheckExact(((PyObject *)__pyx_v_top_n_idx))) {
-          __pyx_t_6 = ((PyObject *)__pyx_v_top_n_idx); __Pyx_INCREF(__pyx_t_6); __pyx_t_13 = 0;
-          __pyx_t_14 = NULL;
-        } else {
-          __pyx_t_13 = -1; __pyx_t_6 = PyObject_GetIter(((PyObject *)__pyx_v_top_n_idx)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 74, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_6);
-          __pyx_t_14 = Py_TYPE(__pyx_t_6)->tp_iternext; if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 74, __pyx_L1_error)
-        }
-        for (;;) {
-          if (likely(!__pyx_t_14)) {
-            if (likely(PyList_CheckExact(__pyx_t_6))) {
-              if (__pyx_t_13 >= PyList_GET_SIZE(__pyx_t_6)) break;
-              #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-              __pyx_t_7 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_13); __Pyx_INCREF(__pyx_t_7); __pyx_t_13++; if (unlikely(0 < 0)) __PYX_ERR(0, 74, __pyx_L1_error)
-              #else
-              __pyx_t_7 = PySequence_ITEM(__pyx_t_6, __pyx_t_13); __pyx_t_13++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 74, __pyx_L1_error)
-              __Pyx_GOTREF(__pyx_t_7);
-              #endif
-            } else {
-              if (__pyx_t_13 >= PyTuple_GET_SIZE(__pyx_t_6)) break;
-              #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-              __pyx_t_7 = PyTuple_GET_ITEM(__pyx_t_6, __pyx_t_13); __Pyx_INCREF(__pyx_t_7); __pyx_t_13++; if (unlikely(0 < 0)) __PYX_ERR(0, 74, __pyx_L1_error)
-              #else
-              __pyx_t_7 = PySequence_ITEM(__pyx_t_6, __pyx_t_13); __pyx_t_13++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 74, __pyx_L1_error)
-              __Pyx_GOTREF(__pyx_t_7);
-              #endif
-            }
-          } else {
-            __pyx_t_7 = __pyx_t_14(__pyx_t_6);
-            if (unlikely(!__pyx_t_7)) {
-              PyObject* exc_type = PyErr_Occurred();
-              if (exc_type) {
-                if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                else __PYX_ERR(0, 74, __pyx_L1_error)
-              }
-              break;
-            }
-            __Pyx_GOTREF(__pyx_t_7);
-          }
-          __pyx_t_15 = __Pyx_PyInt_As_int(__pyx_t_7); if (unlikely((__pyx_t_15 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 74, __pyx_L1_error)
-          __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        __pyx_t_13 = __pyx_v_V;
+        __pyx_t_14 = __pyx_t_13;
+        for (__pyx_t_15 = 0; __pyx_t_15 < __pyx_t_14; __pyx_t_15+=1) {
           __pyx_v_v = __pyx_t_15;
 
-          /* "beamsearch_cython.pyx":75
+          /* "beamsearch_cython.pyx":74
  *             for label in last.sort()[:beam_width]:
- *                 for v in top_n_idx:
+ *                 for v in range(V):
  *                     current_frame_index = v             # <<<<<<<<<<<<<<
- *                     if current_frame_index == 1:
+ *                     if logits[t, current_frame_index] < proon:
  *                         continue
  */
           __pyx_v_current_frame_index = __pyx_v_v;
 
-          /* "beamsearch_cython.pyx":76
- *                 for v in top_n_idx:
+          /* "beamsearch_cython.pyx":75
+ *                 for v in range(V):
  *                     current_frame_index = v
- *                     if current_frame_index == 1:             # <<<<<<<<<<<<<<
+ *                     if logits[t, current_frame_index] < proon:             # <<<<<<<<<<<<<<
  *                         continue
  *                     current_frame_char = "<blank>" if current_frame_index == blank_idx else vocab[current_frame_index]
  */
-          __pyx_t_16 = ((__pyx_v_current_frame_index == 1) != 0);
+          __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_t); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 75, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_7);
+          __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_current_frame_index); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 75, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_6);
+          __pyx_t_9 = PyTuple_New(2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 75, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_9);
+          __Pyx_GIVEREF(__pyx_t_7);
+          PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_7);
+          __Pyx_GIVEREF(__pyx_t_6);
+          PyTuple_SET_ITEM(__pyx_t_9, 1, __pyx_t_6);
+          __pyx_t_7 = 0;
+          __pyx_t_6 = 0;
+          __pyx_t_6 = __Pyx_PyObject_GetItem(__pyx_v_logits, __pyx_t_9); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 75, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_6);
+          __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+          __pyx_t_9 = PyFloat_FromDouble(__pyx_v_proon); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 75, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_9);
+          __pyx_t_7 = PyObject_RichCompare(__pyx_t_6, __pyx_t_9, Py_LT); __Pyx_XGOTREF(__pyx_t_7); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 75, __pyx_L1_error)
+          __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+          __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+          __pyx_t_16 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely(__pyx_t_16 < 0)) __PYX_ERR(0, 75, __pyx_L1_error)
+          __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
           if (__pyx_t_16) {
 
-            /* "beamsearch_cython.pyx":77
+            /* "beamsearch_cython.pyx":76
  *                     current_frame_index = v
- *                     if current_frame_index == 1:
+ *                     if logits[t, current_frame_index] < proon:
  *                         continue             # <<<<<<<<<<<<<<
  *                     current_frame_char = "<blank>" if current_frame_index == blank_idx else vocab[current_frame_index]
  *                     pred_frame_index = blank_idx
  */
             goto __pyx_L11_continue;
 
-            /* "beamsearch_cython.pyx":76
- *                 for v in top_n_idx:
+            /* "beamsearch_cython.pyx":75
+ *                 for v in range(V):
  *                     current_frame_index = v
- *                     if current_frame_index == 1:             # <<<<<<<<<<<<<<
+ *                     if logits[t, current_frame_index] < proon:             # <<<<<<<<<<<<<<
  *                         continue
  *                     current_frame_char = "<blank>" if current_frame_index == blank_idx else vocab[current_frame_index]
  */
           }
 
-          /* "beamsearch_cython.pyx":78
- *                     if current_frame_index == 1:
+          /* "beamsearch_cython.pyx":77
+ *                     if logits[t, current_frame_index] < proon:
  *                         continue
  *                     current_frame_char = "<blank>" if current_frame_index == blank_idx else vocab[current_frame_index]             # <<<<<<<<<<<<<<
  *                     pred_frame_index = blank_idx
@@ -4242,18 +4169,18 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
           } else {
             if (unlikely(__pyx_v_vocab == Py_None)) {
               PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-              __PYX_ERR(0, 78, __pyx_L1_error)
+              __PYX_ERR(0, 77, __pyx_L1_error)
             }
-            __pyx_t_9 = __Pyx_GetItemInt_List(__pyx_v_vocab, __pyx_v_current_frame_index, int, 1, __Pyx_PyInt_From_int, 1, 1, 1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 78, __pyx_L1_error)
+            __pyx_t_9 = __Pyx_GetItemInt_List(__pyx_v_vocab, __pyx_v_current_frame_index, int, 1, __Pyx_PyInt_From_int, 1, 1, 1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 77, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_9);
-            if (!(likely(PyUnicode_CheckExact(__pyx_t_9))||((__pyx_t_9) == Py_None)||((void)PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_9)->tp_name), 0))) __PYX_ERR(0, 78, __pyx_L1_error)
+            if (!(likely(PyUnicode_CheckExact(__pyx_t_9))||((__pyx_t_9) == Py_None)||((void)PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_9)->tp_name), 0))) __PYX_ERR(0, 77, __pyx_L1_error)
             __pyx_t_7 = __pyx_t_9;
             __pyx_t_9 = 0;
           }
           __Pyx_XDECREF_SET(__pyx_v_current_frame_char, ((PyObject*)__pyx_t_7));
           __pyx_t_7 = 0;
 
-          /* "beamsearch_cython.pyx":79
+          /* "beamsearch_cython.pyx":78
  *                         continue
  *                     current_frame_char = "<blank>" if current_frame_index == blank_idx else vocab[current_frame_index]
  *                     pred_frame_index = blank_idx             # <<<<<<<<<<<<<<
@@ -4262,7 +4189,7 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
  */
           __pyx_v_pred_frame_index = __pyx_v_blank_idx;
 
-          /* "beamsearch_cython.pyx":80
+          /* "beamsearch_cython.pyx":79
  *                     current_frame_char = "<blank>" if current_frame_index == blank_idx else vocab[current_frame_index]
  *                     pred_frame_index = blank_idx
  *                     if not label or label[-1] == "<blank>":             # <<<<<<<<<<<<<<
@@ -4278,17 +4205,17 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
           }
           if (unlikely(__pyx_v_label == Py_None)) {
             PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-            __PYX_ERR(0, 80, __pyx_L1_error)
+            __PYX_ERR(0, 79, __pyx_L1_error)
           }
-          __pyx_t_7 = __Pyx_GetItemInt_Tuple(__pyx_v_label, -1L, long, 1, __Pyx_PyInt_From_long, 0, 1, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 80, __pyx_L1_error)
+          __pyx_t_7 = __Pyx_GetItemInt_Tuple(__pyx_v_label, -1L, long, 1, __Pyx_PyInt_From_long, 0, 1, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 79, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
-          __pyx_t_18 = (__Pyx_PyUnicode_Equals(__pyx_t_7, __pyx_kp_u_blank, Py_EQ)); if (unlikely(__pyx_t_18 < 0)) __PYX_ERR(0, 80, __pyx_L1_error)
+          __pyx_t_18 = (__Pyx_PyUnicode_Equals(__pyx_t_7, __pyx_kp_u_blank, Py_EQ)); if (unlikely(__pyx_t_18 < 0)) __PYX_ERR(0, 79, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
           __pyx_t_16 = __pyx_t_18;
           __pyx_L15_bool_binop_done:;
           if (__pyx_t_16) {
 
-            /* "beamsearch_cython.pyx":81
+            /* "beamsearch_cython.pyx":80
  *                     pred_frame_index = blank_idx
  *                     if not label or label[-1] == "<blank>":
  *                         pred_frame_index = blank_idx             # <<<<<<<<<<<<<<
@@ -4297,7 +4224,7 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
  */
             __pyx_v_pred_frame_index = __pyx_v_blank_idx;
 
-            /* "beamsearch_cython.pyx":80
+            /* "beamsearch_cython.pyx":79
  *                     current_frame_char = "<blank>" if current_frame_index == blank_idx else vocab[current_frame_index]
  *                     pred_frame_index = blank_idx
  *                     if not label or label[-1] == "<blank>":             # <<<<<<<<<<<<<<
@@ -4307,7 +4234,7 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
             goto __pyx_L14;
           }
 
-          /* "beamsearch_cython.pyx":84
+          /* "beamsearch_cython.pyx":83
  *                     else:
  *                         # label[-1]  BeamEntry  label_out
  *                         label_str = label[-1].label_out if isinstance(label[-1], BeamEntry) else label[-1]             # <<<<<<<<<<<<<<
@@ -4317,62 +4244,62 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
           /*else*/ {
             if (unlikely(__pyx_v_label == Py_None)) {
               PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-              __PYX_ERR(0, 84, __pyx_L1_error)
+              __PYX_ERR(0, 83, __pyx_L1_error)
             }
-            __pyx_t_9 = __Pyx_GetItemInt_Tuple(__pyx_v_label, -1L, long, 1, __Pyx_PyInt_From_long, 0, 1, 1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 84, __pyx_L1_error)
+            __pyx_t_9 = __Pyx_GetItemInt_Tuple(__pyx_v_label, -1L, long, 1, __Pyx_PyInt_From_long, 0, 1, 1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 83, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_9);
             __pyx_t_16 = __Pyx_TypeCheck(__pyx_t_9, __pyx_ptype_17beamsearch_cython_BeamEntry); 
             __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
             if ((__pyx_t_16 != 0)) {
               if (unlikely(__pyx_v_label == Py_None)) {
                 PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-                __PYX_ERR(0, 84, __pyx_L1_error)
+                __PYX_ERR(0, 83, __pyx_L1_error)
               }
-              __pyx_t_9 = __Pyx_GetItemInt_Tuple(__pyx_v_label, -1L, long, 1, __Pyx_PyInt_From_long, 0, 1, 1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 84, __pyx_L1_error)
+              __pyx_t_9 = __Pyx_GetItemInt_Tuple(__pyx_v_label, -1L, long, 1, __Pyx_PyInt_From_long, 0, 1, 1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 83, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_9);
-              __pyx_t_19 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_label_out); if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 84, __pyx_L1_error)
-              __Pyx_GOTREF(__pyx_t_19);
+              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_label_out); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 83, __pyx_L1_error)
+              __Pyx_GOTREF(__pyx_t_6);
               __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-              __pyx_t_7 = __pyx_t_19;
-              __pyx_t_19 = 0;
+              __pyx_t_7 = __pyx_t_6;
+              __pyx_t_6 = 0;
             } else {
               if (unlikely(__pyx_v_label == Py_None)) {
                 PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-                __PYX_ERR(0, 84, __pyx_L1_error)
+                __PYX_ERR(0, 83, __pyx_L1_error)
               }
-              __pyx_t_19 = __Pyx_GetItemInt_Tuple(__pyx_v_label, -1L, long, 1, __Pyx_PyInt_From_long, 0, 1, 1); if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 84, __pyx_L1_error)
-              __Pyx_GOTREF(__pyx_t_19);
-              __pyx_t_7 = __pyx_t_19;
-              __pyx_t_19 = 0;
+              __pyx_t_6 = __Pyx_GetItemInt_Tuple(__pyx_v_label, -1L, long, 1, __Pyx_PyInt_From_long, 0, 1, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 83, __pyx_L1_error)
+              __Pyx_GOTREF(__pyx_t_6);
+              __pyx_t_7 = __pyx_t_6;
+              __pyx_t_6 = 0;
             }
             __Pyx_XDECREF_SET(__pyx_v_label_str, __pyx_t_7);
             __pyx_t_7 = 0;
 
-            /* "beamsearch_cython.pyx":85
+            /* "beamsearch_cython.pyx":84
  *                         # label[-1]  BeamEntry  label_out
  *                         label_str = label[-1].label_out if isinstance(label[-1], BeamEntry) else label[-1]
  *                         if label_str in vocab:             # <<<<<<<<<<<<<<
  *                             pred_frame_index = vocab.index(label_str)
  * 
  */
-            __pyx_t_16 = (__Pyx_PySequence_ContainsTF(__pyx_v_label_str, __pyx_v_vocab, Py_EQ)); if (unlikely(__pyx_t_16 < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
+            __pyx_t_16 = (__Pyx_PySequence_ContainsTF(__pyx_v_label_str, __pyx_v_vocab, Py_EQ)); if (unlikely(__pyx_t_16 < 0)) __PYX_ERR(0, 84, __pyx_L1_error)
             __pyx_t_18 = (__pyx_t_16 != 0);
             if (__pyx_t_18) {
 
-              /* "beamsearch_cython.pyx":86
+              /* "beamsearch_cython.pyx":85
  *                         label_str = label[-1].label_out if isinstance(label[-1], BeamEntry) else label[-1]
  *                         if label_str in vocab:
  *                             pred_frame_index = vocab.index(label_str)             # <<<<<<<<<<<<<<
  * 
  *                     if current_frame_index != pred_frame_index and current_frame_index != blank_idx:
  */
-              __pyx_t_7 = __Pyx_CallUnboundCMethod1(&__pyx_umethod_PyList_Type_index, __pyx_v_vocab, __pyx_v_label_str); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 86, __pyx_L1_error)
+              __pyx_t_7 = __Pyx_CallUnboundCMethod1(&__pyx_umethod_PyList_Type_index, __pyx_v_vocab, __pyx_v_label_str); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 85, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_7);
-              __pyx_t_15 = __Pyx_PyInt_As_int(__pyx_t_7); if (unlikely((__pyx_t_15 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 86, __pyx_L1_error)
+              __pyx_t_19 = __Pyx_PyInt_As_int(__pyx_t_7); if (unlikely((__pyx_t_19 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L1_error)
               __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-              __pyx_v_pred_frame_index = __pyx_t_15;
+              __pyx_v_pred_frame_index = __pyx_t_19;
 
-              /* "beamsearch_cython.pyx":85
+              /* "beamsearch_cython.pyx":84
  *                         # label[-1]  BeamEntry  label_out
  *                         label_str = label[-1].label_out if isinstance(label[-1], BeamEntry) else label[-1]
  *                         if label_str in vocab:             # <<<<<<<<<<<<<<
@@ -4383,7 +4310,7 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
           }
           __pyx_L14:;
 
-          /* "beamsearch_cython.pyx":88
+          /* "beamsearch_cython.pyx":87
  *                             pred_frame_index = vocab.index(label_str)
  * 
  *                     if current_frame_index != pred_frame_index and current_frame_index != blank_idx:             # <<<<<<<<<<<<<<
@@ -4401,61 +4328,61 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
           __pyx_L19_bool_binop_done:;
           if (__pyx_t_18) {
 
-            /* "beamsearch_cython.pyx":89
+            /* "beamsearch_cython.pyx":88
  * 
  *                     if current_frame_index != pred_frame_index and current_frame_index != blank_idx:
  *                         add_score = lm_add.score(" ".join((list(last.entries[label].context) + [current_frame_char])[-2*add_ngram+1:])) * math.log(10)             # <<<<<<<<<<<<<<
  *                         sub_score = lm_sub.score(" ".join((list(last.entries[label].context) + [current_frame_char])[-2*sub_ngram+1:])) * math.log(10)
  *                         new_score = last.entries[label].SCORE + logits[t, current_frame_index] + add_weight * add_score - sub_weight * sub_score
  */
-            __pyx_t_19 = __Pyx_PyObject_GetAttrStr(__pyx_v_lm_add, __pyx_n_s_score); if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 89, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_19);
+            __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lm_add, __pyx_n_s_score); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 88, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_6);
             if (unlikely(__pyx_v_last->entries == Py_None)) {
               PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-              __PYX_ERR(0, 89, __pyx_L1_error)
+              __PYX_ERR(0, 88, __pyx_L1_error)
             }
-            __pyx_t_9 = __Pyx_PyDict_GetItem(__pyx_v_last->entries, __pyx_v_label); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 89, __pyx_L1_error)
+            __pyx_t_9 = __Pyx_PyDict_GetItem(__pyx_v_last->entries, __pyx_v_label); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 88, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_9);
-            __pyx_t_20 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_context); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 89, __pyx_L1_error)
+            __pyx_t_20 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_context); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 88, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_20);
             __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-            __pyx_t_9 = PySequence_List(__pyx_t_20); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 89, __pyx_L1_error)
+            __pyx_t_9 = PySequence_List(__pyx_t_20); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 88, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_9);
             __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
-            __pyx_t_20 = PyList_New(1); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 89, __pyx_L1_error)
+            __pyx_t_20 = PyList_New(1); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 88, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_20);
             __Pyx_INCREF(__pyx_v_current_frame_char);
             __Pyx_GIVEREF(__pyx_v_current_frame_char);
             PyList_SET_ITEM(__pyx_t_20, 0, __pyx_v_current_frame_char);
-            __pyx_t_21 = PyNumber_Add(__pyx_t_9, __pyx_t_20); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 89, __pyx_L1_error)
+            __pyx_t_21 = PyNumber_Add(__pyx_t_9, __pyx_t_20); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 88, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_21);
             __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
             __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
-            __pyx_t_20 = __Pyx_PyList_GetSlice(__pyx_t_21, ((-2L * __pyx_v_add_ngram) + 1), PY_SSIZE_T_MAX); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 89, __pyx_L1_error)
+            __pyx_t_20 = __Pyx_PyList_GetSlice(__pyx_t_21, ((-2L * __pyx_v_add_ngram) + 1), PY_SSIZE_T_MAX); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 88, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_20);
             __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
-            __pyx_t_21 = PyUnicode_Join(__pyx_kp_u__3, __pyx_t_20); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 89, __pyx_L1_error)
+            __pyx_t_21 = PyUnicode_Join(__pyx_kp_u__2, __pyx_t_20); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 88, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_21);
             __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
             __pyx_t_20 = NULL;
-            if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_19))) {
-              __pyx_t_20 = PyMethod_GET_SELF(__pyx_t_19);
+            if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
+              __pyx_t_20 = PyMethod_GET_SELF(__pyx_t_6);
               if (likely(__pyx_t_20)) {
-                PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_19);
+                PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
                 __Pyx_INCREF(__pyx_t_20);
                 __Pyx_INCREF(function);
-                __Pyx_DECREF_SET(__pyx_t_19, function);
+                __Pyx_DECREF_SET(__pyx_t_6, function);
               }
             }
-            __pyx_t_7 = (__pyx_t_20) ? __Pyx_PyObject_Call2Args(__pyx_t_19, __pyx_t_20, __pyx_t_21) : __Pyx_PyObject_CallOneArg(__pyx_t_19, __pyx_t_21);
+            __pyx_t_7 = (__pyx_t_20) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_20, __pyx_t_21) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_21);
             __Pyx_XDECREF(__pyx_t_20); __pyx_t_20 = 0;
             __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
-            if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 89, __pyx_L1_error)
+            if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 88, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_7);
-            __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
-            __Pyx_GetModuleGlobalName(__pyx_t_21, __pyx_n_s_math); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 89, __pyx_L1_error)
+            __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+            __Pyx_GetModuleGlobalName(__pyx_t_21, __pyx_n_s_math); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 88, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_21);
-            __pyx_t_20 = __Pyx_PyObject_GetAttrStr(__pyx_t_21, __pyx_n_s_log); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 89, __pyx_L1_error)
+            __pyx_t_20 = __Pyx_PyObject_GetAttrStr(__pyx_t_21, __pyx_n_s_log); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 88, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_20);
             __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
             __pyx_t_21 = NULL;
@@ -4468,74 +4395,74 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
                 __Pyx_DECREF_SET(__pyx_t_20, function);
               }
             }
-            __pyx_t_19 = (__pyx_t_21) ? __Pyx_PyObject_Call2Args(__pyx_t_20, __pyx_t_21, __pyx_int_10) : __Pyx_PyObject_CallOneArg(__pyx_t_20, __pyx_int_10);
+            __pyx_t_6 = (__pyx_t_21) ? __Pyx_PyObject_Call2Args(__pyx_t_20, __pyx_t_21, __pyx_int_10) : __Pyx_PyObject_CallOneArg(__pyx_t_20, __pyx_int_10);
             __Pyx_XDECREF(__pyx_t_21); __pyx_t_21 = 0;
-            if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 89, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_19);
+            if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 88, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_6);
             __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
-            __pyx_t_20 = PyNumber_Multiply(__pyx_t_7, __pyx_t_19); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 89, __pyx_L1_error)
+            __pyx_t_20 = PyNumber_Multiply(__pyx_t_7, __pyx_t_6); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 88, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_20);
             __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-            __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
-            __pyx_t_22 = __pyx_PyFloat_AsFloat(__pyx_t_20); if (unlikely((__pyx_t_22 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 89, __pyx_L1_error)
+            __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+            __pyx_t_22 = __pyx_PyFloat_AsFloat(__pyx_t_20); if (unlikely((__pyx_t_22 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 88, __pyx_L1_error)
             __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
             __pyx_v_add_score = __pyx_t_22;
 
-            /* "beamsearch_cython.pyx":90
+            /* "beamsearch_cython.pyx":89
  *                     if current_frame_index != pred_frame_index and current_frame_index != blank_idx:
  *                         add_score = lm_add.score(" ".join((list(last.entries[label].context) + [current_frame_char])[-2*add_ngram+1:])) * math.log(10)
  *                         sub_score = lm_sub.score(" ".join((list(last.entries[label].context) + [current_frame_char])[-2*sub_ngram+1:])) * math.log(10)             # <<<<<<<<<<<<<<
  *                         new_score = last.entries[label].SCORE + logits[t, current_frame_index] + add_weight * add_score - sub_weight * sub_score
  *                         new_label = label + (current_frame_char,)
  */
-            __pyx_t_19 = __Pyx_PyObject_GetAttrStr(__pyx_v_lm_sub, __pyx_n_s_score); if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 90, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_19);
+            __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_lm_sub, __pyx_n_s_score); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 89, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_6);
             if (unlikely(__pyx_v_last->entries == Py_None)) {
               PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-              __PYX_ERR(0, 90, __pyx_L1_error)
+              __PYX_ERR(0, 89, __pyx_L1_error)
             }
-            __pyx_t_7 = __Pyx_PyDict_GetItem(__pyx_v_last->entries, __pyx_v_label); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 90, __pyx_L1_error)
+            __pyx_t_7 = __Pyx_PyDict_GetItem(__pyx_v_last->entries, __pyx_v_label); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 89, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_7);
-            __pyx_t_21 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_context); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 90, __pyx_L1_error)
+            __pyx_t_21 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_context); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 89, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_21);
             __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-            __pyx_t_7 = PySequence_List(__pyx_t_21); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 90, __pyx_L1_error)
+            __pyx_t_7 = PySequence_List(__pyx_t_21); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 89, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_7);
             __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
-            __pyx_t_21 = PyList_New(1); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 90, __pyx_L1_error)
+            __pyx_t_21 = PyList_New(1); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 89, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_21);
             __Pyx_INCREF(__pyx_v_current_frame_char);
             __Pyx_GIVEREF(__pyx_v_current_frame_char);
             PyList_SET_ITEM(__pyx_t_21, 0, __pyx_v_current_frame_char);
-            __pyx_t_9 = PyNumber_Add(__pyx_t_7, __pyx_t_21); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 90, __pyx_L1_error)
+            __pyx_t_9 = PyNumber_Add(__pyx_t_7, __pyx_t_21); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 89, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_9);
             __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
             __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
-            __pyx_t_21 = __Pyx_PyList_GetSlice(__pyx_t_9, ((-2L * __pyx_v_sub_ngram) + 1), PY_SSIZE_T_MAX); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 90, __pyx_L1_error)
+            __pyx_t_21 = __Pyx_PyList_GetSlice(__pyx_t_9, ((-2L * __pyx_v_sub_ngram) + 1), PY_SSIZE_T_MAX); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 89, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_21);
             __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-            __pyx_t_9 = PyUnicode_Join(__pyx_kp_u__3, __pyx_t_21); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 90, __pyx_L1_error)
+            __pyx_t_9 = PyUnicode_Join(__pyx_kp_u__2, __pyx_t_21); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 89, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_9);
             __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
             __pyx_t_21 = NULL;
-            if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_19))) {
-              __pyx_t_21 = PyMethod_GET_SELF(__pyx_t_19);
+            if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
+              __pyx_t_21 = PyMethod_GET_SELF(__pyx_t_6);
               if (likely(__pyx_t_21)) {
-                PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_19);
+                PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
                 __Pyx_INCREF(__pyx_t_21);
                 __Pyx_INCREF(function);
-                __Pyx_DECREF_SET(__pyx_t_19, function);
+                __Pyx_DECREF_SET(__pyx_t_6, function);
               }
             }
-            __pyx_t_20 = (__pyx_t_21) ? __Pyx_PyObject_Call2Args(__pyx_t_19, __pyx_t_21, __pyx_t_9) : __Pyx_PyObject_CallOneArg(__pyx_t_19, __pyx_t_9);
+            __pyx_t_20 = (__pyx_t_21) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_21, __pyx_t_9) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_9);
             __Pyx_XDECREF(__pyx_t_21); __pyx_t_21 = 0;
             __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-            if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 90, __pyx_L1_error)
+            if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 89, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_20);
-            __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
-            __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_math); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 90, __pyx_L1_error)
+            __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+            __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_math); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 89, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_9);
-            __pyx_t_21 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_log); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 90, __pyx_L1_error)
+            __pyx_t_21 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_log); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 89, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_21);
             __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
             __pyx_t_9 = NULL;
@@ -4548,20 +4475,20 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
                 __Pyx_DECREF_SET(__pyx_t_21, function);
               }
             }
-            __pyx_t_19 = (__pyx_t_9) ? __Pyx_PyObject_Call2Args(__pyx_t_21, __pyx_t_9, __pyx_int_10) : __Pyx_PyObject_CallOneArg(__pyx_t_21, __pyx_int_10);
+            __pyx_t_6 = (__pyx_t_9) ? __Pyx_PyObject_Call2Args(__pyx_t_21, __pyx_t_9, __pyx_int_10) : __Pyx_PyObject_CallOneArg(__pyx_t_21, __pyx_int_10);
             __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-            if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 90, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_19);
+            if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 89, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_6);
             __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
-            __pyx_t_21 = PyNumber_Multiply(__pyx_t_20, __pyx_t_19); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 90, __pyx_L1_error)
+            __pyx_t_21 = PyNumber_Multiply(__pyx_t_20, __pyx_t_6); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 89, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_21);
             __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
-            __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
-            __pyx_t_22 = __pyx_PyFloat_AsFloat(__pyx_t_21); if (unlikely((__pyx_t_22 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 90, __pyx_L1_error)
+            __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+            __pyx_t_22 = __pyx_PyFloat_AsFloat(__pyx_t_21); if (unlikely((__pyx_t_22 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 89, __pyx_L1_error)
             __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
             __pyx_v_sub_score = __pyx_t_22;
 
-            /* "beamsearch_cython.pyx":91
+            /* "beamsearch_cython.pyx":90
  *                         add_score = lm_add.score(" ".join((list(last.entries[label].context) + [current_frame_char])[-2*add_ngram+1:])) * math.log(10)
  *                         sub_score = lm_sub.score(" ".join((list(last.entries[label].context) + [current_frame_char])[-2*sub_ngram+1:])) * math.log(10)
  *                         new_score = last.entries[label].SCORE + logits[t, current_frame_index] + add_weight * add_score - sub_weight * sub_score             # <<<<<<<<<<<<<<
@@ -4570,18 +4497,18 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
  */
             if (unlikely(__pyx_v_last->entries == Py_None)) {
               PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-              __PYX_ERR(0, 91, __pyx_L1_error)
+              __PYX_ERR(0, 90, __pyx_L1_error)
             }
-            __pyx_t_21 = __Pyx_PyDict_GetItem(__pyx_v_last->entries, __pyx_v_label); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 91, __pyx_L1_error)
+            __pyx_t_21 = __Pyx_PyDict_GetItem(__pyx_v_last->entries, __pyx_v_label); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 90, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_21);
-            __pyx_t_19 = __Pyx_PyObject_GetAttrStr(__pyx_t_21, __pyx_n_s_SCORE); if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 91, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_19);
+            __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_21, __pyx_n_s_SCORE); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 90, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_6);
             __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
-            __pyx_t_21 = __Pyx_PyInt_From_int(__pyx_v_t); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 91, __pyx_L1_error)
+            __pyx_t_21 = __Pyx_PyInt_From_int(__pyx_v_t); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 90, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_21);
-            __pyx_t_20 = __Pyx_PyInt_From_int(__pyx_v_current_frame_index); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 91, __pyx_L1_error)
+            __pyx_t_20 = __Pyx_PyInt_From_int(__pyx_v_current_frame_index); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 90, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_20);
-            __pyx_t_9 = PyTuple_New(2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 91, __pyx_L1_error)
+            __pyx_t_9 = PyTuple_New(2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 90, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_9);
             __Pyx_GIVEREF(__pyx_t_21);
             PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_21);
@@ -4589,48 +4516,48 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
             PyTuple_SET_ITEM(__pyx_t_9, 1, __pyx_t_20);
             __pyx_t_21 = 0;
             __pyx_t_20 = 0;
-            __pyx_t_20 = __Pyx_PyObject_GetItem(__pyx_v_logits, __pyx_t_9); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 91, __pyx_L1_error)
+            __pyx_t_20 = __Pyx_PyObject_GetItem(__pyx_v_logits, __pyx_t_9); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 90, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_20);
             __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-            __pyx_t_9 = PyNumber_Add(__pyx_t_19, __pyx_t_20); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 91, __pyx_L1_error)
+            __pyx_t_9 = PyNumber_Add(__pyx_t_6, __pyx_t_20); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 90, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_9);
-            __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
+            __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
             __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
-            __pyx_t_20 = PyFloat_FromDouble((__pyx_v_add_weight * __pyx_v_add_score)); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 91, __pyx_L1_error)
+            __pyx_t_20 = PyFloat_FromDouble((__pyx_v_add_weight * __pyx_v_add_score)); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 90, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_20);
-            __pyx_t_19 = PyNumber_Add(__pyx_t_9, __pyx_t_20); if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 91, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_19);
+            __pyx_t_6 = PyNumber_Add(__pyx_t_9, __pyx_t_20); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 90, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_6);
             __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
             __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
-            __pyx_t_20 = PyFloat_FromDouble((__pyx_v_sub_weight * __pyx_v_sub_score)); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 91, __pyx_L1_error)
+            __pyx_t_20 = PyFloat_FromDouble((__pyx_v_sub_weight * __pyx_v_sub_score)); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 90, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_20);
-            __pyx_t_9 = PyNumber_Subtract(__pyx_t_19, __pyx_t_20); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 91, __pyx_L1_error)
+            __pyx_t_9 = PyNumber_Subtract(__pyx_t_6, __pyx_t_20); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 90, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_9);
-            __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
+            __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
             __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
-            __pyx_t_22 = __pyx_PyFloat_AsFloat(__pyx_t_9); if (unlikely((__pyx_t_22 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 91, __pyx_L1_error)
+            __pyx_t_22 = __pyx_PyFloat_AsFloat(__pyx_t_9); if (unlikely((__pyx_t_22 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 90, __pyx_L1_error)
             __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
             __pyx_v_new_score = __pyx_t_22;
 
-            /* "beamsearch_cython.pyx":92
+            /* "beamsearch_cython.pyx":91
  *                         sub_score = lm_sub.score(" ".join((list(last.entries[label].context) + [current_frame_char])[-2*sub_ngram+1:])) * math.log(10)
  *                         new_score = last.entries[label].SCORE + logits[t, current_frame_index] + add_weight * add_score - sub_weight * sub_score
  *                         new_label = label + (current_frame_char,)             # <<<<<<<<<<<<<<
  *                         if new_label not in curr.entries:
  *                             curr.entries[new_label] = BeamEntry()
  */
-            __pyx_t_9 = PyTuple_New(1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 92, __pyx_L1_error)
+            __pyx_t_9 = PyTuple_New(1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 91, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_9);
             __Pyx_INCREF(__pyx_v_current_frame_char);
             __Pyx_GIVEREF(__pyx_v_current_frame_char);
             PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_v_current_frame_char);
-            __pyx_t_20 = PyNumber_Add(__pyx_v_label, __pyx_t_9); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 92, __pyx_L1_error)
+            __pyx_t_20 = PyNumber_Add(__pyx_v_label, __pyx_t_9); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 91, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_20);
             __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
             __Pyx_XDECREF_SET(__pyx_v_new_label, ((PyObject*)__pyx_t_20));
             __pyx_t_20 = 0;
 
-            /* "beamsearch_cython.pyx":93
+            /* "beamsearch_cython.pyx":92
  *                         new_score = last.entries[label].SCORE + logits[t, current_frame_index] + add_weight * add_score - sub_weight * sub_score
  *                         new_label = label + (current_frame_char,)
  *                         if new_label not in curr.entries:             # <<<<<<<<<<<<<<
@@ -4639,29 +4566,29 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
  */
             if (unlikely(__pyx_v_curr->entries == Py_None)) {
               PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-              __PYX_ERR(0, 93, __pyx_L1_error)
+              __PYX_ERR(0, 92, __pyx_L1_error)
             }
-            __pyx_t_18 = (__Pyx_PyDict_ContainsTF(__pyx_v_new_label, __pyx_v_curr->entries, Py_NE)); if (unlikely(__pyx_t_18 < 0)) __PYX_ERR(0, 93, __pyx_L1_error)
+            __pyx_t_18 = (__Pyx_PyDict_ContainsTF(__pyx_v_new_label, __pyx_v_curr->entries, Py_NE)); if (unlikely(__pyx_t_18 < 0)) __PYX_ERR(0, 92, __pyx_L1_error)
             __pyx_t_16 = (__pyx_t_18 != 0);
             if (__pyx_t_16) {
 
-              /* "beamsearch_cython.pyx":94
+              /* "beamsearch_cython.pyx":93
  *                         new_label = label + (current_frame_char,)
  *                         if new_label not in curr.entries:
  *                             curr.entries[new_label] = BeamEntry()             # <<<<<<<<<<<<<<
  *                             curr.entries[new_label].label_out = new_label
  *                             curr.entries[new_label].SCORE = new_score
  */
-              __pyx_t_20 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_17beamsearch_cython_BeamEntry)); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 94, __pyx_L1_error)
+              __pyx_t_20 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_17beamsearch_cython_BeamEntry)); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 93, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_20);
               if (unlikely(__pyx_v_curr->entries == Py_None)) {
                 PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-                __PYX_ERR(0, 94, __pyx_L1_error)
+                __PYX_ERR(0, 93, __pyx_L1_error)
               }
-              if (unlikely(PyDict_SetItem(__pyx_v_curr->entries, __pyx_v_new_label, __pyx_t_20) < 0)) __PYX_ERR(0, 94, __pyx_L1_error)
+              if (unlikely(PyDict_SetItem(__pyx_v_curr->entries, __pyx_v_new_label, __pyx_t_20) < 0)) __PYX_ERR(0, 93, __pyx_L1_error)
               __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
 
-              /* "beamsearch_cython.pyx":95
+              /* "beamsearch_cython.pyx":94
  *                         if new_label not in curr.entries:
  *                             curr.entries[new_label] = BeamEntry()
  *                             curr.entries[new_label].label_out = new_label             # <<<<<<<<<<<<<<
@@ -4670,33 +4597,33 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
  */
               if (unlikely(__pyx_v_curr->entries == Py_None)) {
                 PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-                __PYX_ERR(0, 95, __pyx_L1_error)
+                __PYX_ERR(0, 94, __pyx_L1_error)
               }
-              __pyx_t_20 = __Pyx_PyDict_GetItem(__pyx_v_curr->entries, __pyx_v_new_label); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 95, __pyx_L1_error)
+              __pyx_t_20 = __Pyx_PyDict_GetItem(__pyx_v_curr->entries, __pyx_v_new_label); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 94, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_20);
-              if (__Pyx_PyObject_SetAttrStr(__pyx_t_20, __pyx_n_s_label_out, __pyx_v_new_label) < 0) __PYX_ERR(0, 95, __pyx_L1_error)
+              if (__Pyx_PyObject_SetAttrStr(__pyx_t_20, __pyx_n_s_label_out, __pyx_v_new_label) < 0) __PYX_ERR(0, 94, __pyx_L1_error)
               __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
 
-              /* "beamsearch_cython.pyx":96
+              /* "beamsearch_cython.pyx":95
  *                             curr.entries[new_label] = BeamEntry()
  *                             curr.entries[new_label].label_out = new_label
  *                             curr.entries[new_label].SCORE = new_score             # <<<<<<<<<<<<<<
  *                             curr.entries[new_label].context = last.entries[label].context + (current_frame_char,)
  *                     else:
  */
-              __pyx_t_20 = PyFloat_FromDouble(__pyx_v_new_score); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 96, __pyx_L1_error)
+              __pyx_t_20 = PyFloat_FromDouble(__pyx_v_new_score); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 95, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_20);
               if (unlikely(__pyx_v_curr->entries == Py_None)) {
                 PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-                __PYX_ERR(0, 96, __pyx_L1_error)
+                __PYX_ERR(0, 95, __pyx_L1_error)
               }
-              __pyx_t_9 = __Pyx_PyDict_GetItem(__pyx_v_curr->entries, __pyx_v_new_label); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 96, __pyx_L1_error)
+              __pyx_t_9 = __Pyx_PyDict_GetItem(__pyx_v_curr->entries, __pyx_v_new_label); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 95, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_9);
-              if (__Pyx_PyObject_SetAttrStr(__pyx_t_9, __pyx_n_s_SCORE, __pyx_t_20) < 0) __PYX_ERR(0, 96, __pyx_L1_error)
+              if (__Pyx_PyObject_SetAttrStr(__pyx_t_9, __pyx_n_s_SCORE, __pyx_t_20) < 0) __PYX_ERR(0, 95, __pyx_L1_error)
               __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
               __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-              /* "beamsearch_cython.pyx":97
+              /* "beamsearch_cython.pyx":96
  *                             curr.entries[new_label].label_out = new_label
  *                             curr.entries[new_label].SCORE = new_score
  *                             curr.entries[new_label].context = last.entries[label].context + (current_frame_char,)             # <<<<<<<<<<<<<<
@@ -4705,33 +4632,33 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
  */
               if (unlikely(__pyx_v_last->entries == Py_None)) {
                 PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-                __PYX_ERR(0, 97, __pyx_L1_error)
+                __PYX_ERR(0, 96, __pyx_L1_error)
               }
-              __pyx_t_9 = __Pyx_PyDict_GetItem(__pyx_v_last->entries, __pyx_v_label); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 97, __pyx_L1_error)
+              __pyx_t_9 = __Pyx_PyDict_GetItem(__pyx_v_last->entries, __pyx_v_label); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 96, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_9);
-              __pyx_t_20 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_context); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 97, __pyx_L1_error)
+              __pyx_t_20 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_context); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 96, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_20);
               __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-              __pyx_t_9 = PyTuple_New(1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 97, __pyx_L1_error)
+              __pyx_t_9 = PyTuple_New(1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 96, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_9);
               __Pyx_INCREF(__pyx_v_current_frame_char);
               __Pyx_GIVEREF(__pyx_v_current_frame_char);
               PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_v_current_frame_char);
-              __pyx_t_19 = PyNumber_Add(__pyx_t_20, __pyx_t_9); if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 97, __pyx_L1_error)
-              __Pyx_GOTREF(__pyx_t_19);
+              __pyx_t_6 = PyNumber_Add(__pyx_t_20, __pyx_t_9); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 96, __pyx_L1_error)
+              __Pyx_GOTREF(__pyx_t_6);
               __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
               __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
               if (unlikely(__pyx_v_curr->entries == Py_None)) {
                 PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-                __PYX_ERR(0, 97, __pyx_L1_error)
+                __PYX_ERR(0, 96, __pyx_L1_error)
               }
-              __pyx_t_9 = __Pyx_PyDict_GetItem(__pyx_v_curr->entries, __pyx_v_new_label); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 97, __pyx_L1_error)
+              __pyx_t_9 = __Pyx_PyDict_GetItem(__pyx_v_curr->entries, __pyx_v_new_label); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 96, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_9);
-              if (__Pyx_PyObject_SetAttrStr(__pyx_t_9, __pyx_n_s_context, __pyx_t_19) < 0) __PYX_ERR(0, 97, __pyx_L1_error)
-              __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
+              if (__Pyx_PyObject_SetAttrStr(__pyx_t_9, __pyx_n_s_context, __pyx_t_6) < 0) __PYX_ERR(0, 96, __pyx_L1_error)
+              __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
               __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-              /* "beamsearch_cython.pyx":93
+              /* "beamsearch_cython.pyx":92
  *                         new_score = last.entries[label].SCORE + logits[t, current_frame_index] + add_weight * add_score - sub_weight * sub_score
  *                         new_label = label + (current_frame_char,)
  *                         if new_label not in curr.entries:             # <<<<<<<<<<<<<<
@@ -4740,7 +4667,7 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
  */
             }
 
-            /* "beamsearch_cython.pyx":88
+            /* "beamsearch_cython.pyx":87
  *                             pred_frame_index = vocab.index(label_str)
  * 
  *                     if current_frame_index != pred_frame_index and current_frame_index != blank_idx:             # <<<<<<<<<<<<<<
@@ -4750,7 +4677,7 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
             goto __pyx_L18;
           }
 
-          /* "beamsearch_cython.pyx":99
+          /* "beamsearch_cython.pyx":98
  *                             curr.entries[new_label].context = last.entries[label].context + (current_frame_char,)
  *                     else:
  *                         new_score = last.entries[label].SCORE + logits[t, current_frame_index]             # <<<<<<<<<<<<<<
@@ -4760,18 +4687,18 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
           /*else*/ {
             if (unlikely(__pyx_v_last->entries == Py_None)) {
               PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-              __PYX_ERR(0, 99, __pyx_L1_error)
+              __PYX_ERR(0, 98, __pyx_L1_error)
             }
-            __pyx_t_9 = __Pyx_PyDict_GetItem(__pyx_v_last->entries, __pyx_v_label); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 99, __pyx_L1_error)
+            __pyx_t_9 = __Pyx_PyDict_GetItem(__pyx_v_last->entries, __pyx_v_label); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 98, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_9);
-            __pyx_t_19 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_SCORE); if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 99, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_19);
+            __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_SCORE); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 98, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_6);
             __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-            __pyx_t_9 = __Pyx_PyInt_From_int(__pyx_v_t); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 99, __pyx_L1_error)
+            __pyx_t_9 = __Pyx_PyInt_From_int(__pyx_v_t); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 98, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_9);
-            __pyx_t_20 = __Pyx_PyInt_From_int(__pyx_v_current_frame_index); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 99, __pyx_L1_error)
+            __pyx_t_20 = __Pyx_PyInt_From_int(__pyx_v_current_frame_index); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 98, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_20);
-            __pyx_t_21 = PyTuple_New(2); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 99, __pyx_L1_error)
+            __pyx_t_21 = PyTuple_New(2); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 98, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_21);
             __Pyx_GIVEREF(__pyx_t_9);
             PyTuple_SET_ITEM(__pyx_t_21, 0, __pyx_t_9);
@@ -4779,36 +4706,36 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
             PyTuple_SET_ITEM(__pyx_t_21, 1, __pyx_t_20);
             __pyx_t_9 = 0;
             __pyx_t_20 = 0;
-            __pyx_t_20 = __Pyx_PyObject_GetItem(__pyx_v_logits, __pyx_t_21); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 99, __pyx_L1_error)
+            __pyx_t_20 = __Pyx_PyObject_GetItem(__pyx_v_logits, __pyx_t_21); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 98, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_20);
             __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
-            __pyx_t_21 = PyNumber_Add(__pyx_t_19, __pyx_t_20); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 99, __pyx_L1_error)
+            __pyx_t_21 = PyNumber_Add(__pyx_t_6, __pyx_t_20); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 98, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_21);
-            __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
+            __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
             __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
-            __pyx_t_22 = __pyx_PyFloat_AsFloat(__pyx_t_21); if (unlikely((__pyx_t_22 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 99, __pyx_L1_error)
+            __pyx_t_22 = __pyx_PyFloat_AsFloat(__pyx_t_21); if (unlikely((__pyx_t_22 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 98, __pyx_L1_error)
             __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
             __pyx_v_new_score = __pyx_t_22;
 
-            /* "beamsearch_cython.pyx":100
+            /* "beamsearch_cython.pyx":99
  *                     else:
  *                         new_score = last.entries[label].SCORE + logits[t, current_frame_index]
  *                         new_label = label + (current_frame_char,)             # <<<<<<<<<<<<<<
  *                         if new_label not in curr.entries:
  *                             curr.entries[new_label] = BeamEntry()
  */
-            __pyx_t_21 = PyTuple_New(1); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 100, __pyx_L1_error)
+            __pyx_t_21 = PyTuple_New(1); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 99, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_21);
             __Pyx_INCREF(__pyx_v_current_frame_char);
             __Pyx_GIVEREF(__pyx_v_current_frame_char);
             PyTuple_SET_ITEM(__pyx_t_21, 0, __pyx_v_current_frame_char);
-            __pyx_t_20 = PyNumber_Add(__pyx_v_label, __pyx_t_21); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 100, __pyx_L1_error)
+            __pyx_t_20 = PyNumber_Add(__pyx_v_label, __pyx_t_21); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 99, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_20);
             __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
             __Pyx_XDECREF_SET(__pyx_v_new_label, ((PyObject*)__pyx_t_20));
             __pyx_t_20 = 0;
 
-            /* "beamsearch_cython.pyx":101
+            /* "beamsearch_cython.pyx":100
  *                         new_score = last.entries[label].SCORE + logits[t, current_frame_index]
  *                         new_label = label + (current_frame_char,)
  *                         if new_label not in curr.entries:             # <<<<<<<<<<<<<<
@@ -4817,29 +4744,29 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
  */
             if (unlikely(__pyx_v_curr->entries == Py_None)) {
               PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-              __PYX_ERR(0, 101, __pyx_L1_error)
+              __PYX_ERR(0, 100, __pyx_L1_error)
             }
-            __pyx_t_16 = (__Pyx_PyDict_ContainsTF(__pyx_v_new_label, __pyx_v_curr->entries, Py_NE)); if (unlikely(__pyx_t_16 < 0)) __PYX_ERR(0, 101, __pyx_L1_error)
+            __pyx_t_16 = (__Pyx_PyDict_ContainsTF(__pyx_v_new_label, __pyx_v_curr->entries, Py_NE)); if (unlikely(__pyx_t_16 < 0)) __PYX_ERR(0, 100, __pyx_L1_error)
             __pyx_t_18 = (__pyx_t_16 != 0);
             if (__pyx_t_18) {
 
-              /* "beamsearch_cython.pyx":102
+              /* "beamsearch_cython.pyx":101
  *                         new_label = label + (current_frame_char,)
  *                         if new_label not in curr.entries:
  *                             curr.entries[new_label] = BeamEntry()             # <<<<<<<<<<<<<<
  *                             curr.entries[new_label].label_out = new_label
  *                             curr.entries[new_label].SCORE = new_score
  */
-              __pyx_t_20 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_17beamsearch_cython_BeamEntry)); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 102, __pyx_L1_error)
+              __pyx_t_20 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_17beamsearch_cython_BeamEntry)); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 101, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_20);
               if (unlikely(__pyx_v_curr->entries == Py_None)) {
                 PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-                __PYX_ERR(0, 102, __pyx_L1_error)
+                __PYX_ERR(0, 101, __pyx_L1_error)
               }
-              if (unlikely(PyDict_SetItem(__pyx_v_curr->entries, __pyx_v_new_label, __pyx_t_20) < 0)) __PYX_ERR(0, 102, __pyx_L1_error)
+              if (unlikely(PyDict_SetItem(__pyx_v_curr->entries, __pyx_v_new_label, __pyx_t_20) < 0)) __PYX_ERR(0, 101, __pyx_L1_error)
               __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
 
-              /* "beamsearch_cython.pyx":103
+              /* "beamsearch_cython.pyx":102
  *                         if new_label not in curr.entries:
  *                             curr.entries[new_label] = BeamEntry()
  *                             curr.entries[new_label].label_out = new_label             # <<<<<<<<<<<<<<
@@ -4848,33 +4775,33 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
  */
               if (unlikely(__pyx_v_curr->entries == Py_None)) {
                 PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-                __PYX_ERR(0, 103, __pyx_L1_error)
+                __PYX_ERR(0, 102, __pyx_L1_error)
               }
-              __pyx_t_20 = __Pyx_PyDict_GetItem(__pyx_v_curr->entries, __pyx_v_new_label); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 103, __pyx_L1_error)
+              __pyx_t_20 = __Pyx_PyDict_GetItem(__pyx_v_curr->entries, __pyx_v_new_label); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 102, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_20);
-              if (__Pyx_PyObject_SetAttrStr(__pyx_t_20, __pyx_n_s_label_out, __pyx_v_new_label) < 0) __PYX_ERR(0, 103, __pyx_L1_error)
+              if (__Pyx_PyObject_SetAttrStr(__pyx_t_20, __pyx_n_s_label_out, __pyx_v_new_label) < 0) __PYX_ERR(0, 102, __pyx_L1_error)
               __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
 
-              /* "beamsearch_cython.pyx":104
+              /* "beamsearch_cython.pyx":103
  *                             curr.entries[new_label] = BeamEntry()
  *                             curr.entries[new_label].label_out = new_label
  *                             curr.entries[new_label].SCORE = new_score             # <<<<<<<<<<<<<<
  *                             curr.entries[new_label].context = last.entries[label].context
  *             last = curr
  */
-              __pyx_t_20 = PyFloat_FromDouble(__pyx_v_new_score); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 104, __pyx_L1_error)
+              __pyx_t_20 = PyFloat_FromDouble(__pyx_v_new_score); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 103, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_20);
               if (unlikely(__pyx_v_curr->entries == Py_None)) {
                 PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-                __PYX_ERR(0, 104, __pyx_L1_error)
+                __PYX_ERR(0, 103, __pyx_L1_error)
               }
-              __pyx_t_21 = __Pyx_PyDict_GetItem(__pyx_v_curr->entries, __pyx_v_new_label); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 104, __pyx_L1_error)
+              __pyx_t_21 = __Pyx_PyDict_GetItem(__pyx_v_curr->entries, __pyx_v_new_label); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 103, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_21);
-              if (__Pyx_PyObject_SetAttrStr(__pyx_t_21, __pyx_n_s_SCORE, __pyx_t_20) < 0) __PYX_ERR(0, 104, __pyx_L1_error)
+              if (__Pyx_PyObject_SetAttrStr(__pyx_t_21, __pyx_n_s_SCORE, __pyx_t_20) < 0) __PYX_ERR(0, 103, __pyx_L1_error)
               __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
               __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
 
-              /* "beamsearch_cython.pyx":105
+              /* "beamsearch_cython.pyx":104
  *                             curr.entries[new_label].label_out = new_label
  *                             curr.entries[new_label].SCORE = new_score
  *                             curr.entries[new_label].context = last.entries[label].context             # <<<<<<<<<<<<<<
@@ -4883,24 +4810,24 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
  */
               if (unlikely(__pyx_v_last->entries == Py_None)) {
                 PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-                __PYX_ERR(0, 105, __pyx_L1_error)
+                __PYX_ERR(0, 104, __pyx_L1_error)
               }
-              __pyx_t_21 = __Pyx_PyDict_GetItem(__pyx_v_last->entries, __pyx_v_label); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 105, __pyx_L1_error)
+              __pyx_t_21 = __Pyx_PyDict_GetItem(__pyx_v_last->entries, __pyx_v_label); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 104, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_21);
-              __pyx_t_20 = __Pyx_PyObject_GetAttrStr(__pyx_t_21, __pyx_n_s_context); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 105, __pyx_L1_error)
+              __pyx_t_20 = __Pyx_PyObject_GetAttrStr(__pyx_t_21, __pyx_n_s_context); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 104, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_20);
               __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
               if (unlikely(__pyx_v_curr->entries == Py_None)) {
                 PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-                __PYX_ERR(0, 105, __pyx_L1_error)
+                __PYX_ERR(0, 104, __pyx_L1_error)
               }
-              __pyx_t_21 = __Pyx_PyDict_GetItem(__pyx_v_curr->entries, __pyx_v_new_label); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 105, __pyx_L1_error)
+              __pyx_t_21 = __Pyx_PyDict_GetItem(__pyx_v_curr->entries, __pyx_v_new_label); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 104, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_21);
-              if (__Pyx_PyObject_SetAttrStr(__pyx_t_21, __pyx_n_s_context, __pyx_t_20) < 0) __PYX_ERR(0, 105, __pyx_L1_error)
+              if (__Pyx_PyObject_SetAttrStr(__pyx_t_21, __pyx_n_s_context, __pyx_t_20) < 0) __PYX_ERR(0, 104, __pyx_L1_error)
               __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
               __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
 
-              /* "beamsearch_cython.pyx":101
+              /* "beamsearch_cython.pyx":100
  *                         new_score = last.entries[label].SCORE + logits[t, current_frame_index]
  *                         new_label = label + (current_frame_char,)
  *                         if new_label not in curr.entries:             # <<<<<<<<<<<<<<
@@ -4910,29 +4837,20 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
             }
           }
           __pyx_L18:;
-
-          /* "beamsearch_cython.pyx":74
- *             top_n_idx = np.argsort(logits[t])[::-1][:cut_off_n]
- *             for label in last.sort()[:beam_width]:
- *                 for v in top_n_idx:             # <<<<<<<<<<<<<<
- *                     current_frame_index = v
- *                     if current_frame_index == 1:
- */
           __pyx_L11_continue:;
         }
-        __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-        /* "beamsearch_cython.pyx":73
+        /* "beamsearch_cython.pyx":72
+ *         for t in range(T):
  *             curr = BeamList()
- *             top_n_idx = np.argsort(logits[t])[::-1][:cut_off_n]
  *             for label in last.sort()[:beam_width]:             # <<<<<<<<<<<<<<
- *                 for v in top_n_idx:
+ *                 for v in range(V):
  *                     current_frame_index = v
  */
       }
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-      /* "beamsearch_cython.pyx":106
+      /* "beamsearch_cython.pyx":105
  *                             curr.entries[new_label].SCORE = new_score
  *                             curr.entries[new_label].context = last.entries[label].context
  *             last = curr             # <<<<<<<<<<<<<<
@@ -4943,18 +4861,18 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
       __Pyx_DECREF_SET(__pyx_v_last, __pyx_v_curr);
     }
 
-    /* "beamsearch_cython.pyx":107
+    /* "beamsearch_cython.pyx":106
  *                             curr.entries[new_label].context = last.entries[label].context
  *             last = curr
  *         last.normalize()             # <<<<<<<<<<<<<<
  *         batch_new_scores.append("".join(last.entries[last.sort()[0]].context[max_ngram:]))
  * 
  */
-    __pyx_t_8 = ((struct __pyx_vtabstruct_17beamsearch_cython_BeamList *)__pyx_v_last->__pyx_vtab)->normalize(__pyx_v_last, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 107, __pyx_L1_error)
+    __pyx_t_8 = ((struct __pyx_vtabstruct_17beamsearch_cython_BeamList *)__pyx_v_last->__pyx_vtab)->normalize(__pyx_v_last, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 106, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-    /* "beamsearch_cython.pyx":108
+    /* "beamsearch_cython.pyx":107
  *             last = curr
  *         last.normalize()
  *         batch_new_scores.append("".join(last.entries[last.sort()[0]].context[max_ngram:]))             # <<<<<<<<<<<<<<
@@ -4963,30 +4881,30 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
  */
     if (unlikely(__pyx_v_last->entries == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 108, __pyx_L1_error)
+      __PYX_ERR(0, 107, __pyx_L1_error)
     }
-    __pyx_t_8 = ((struct __pyx_vtabstruct_17beamsearch_cython_BeamList *)__pyx_v_last->__pyx_vtab)->sort(__pyx_v_last, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 108, __pyx_L1_error)
+    __pyx_t_8 = ((struct __pyx_vtabstruct_17beamsearch_cython_BeamList *)__pyx_v_last->__pyx_vtab)->sort(__pyx_v_last, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 107, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_8, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 108, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_21 = __Pyx_GetItemInt(__pyx_t_8, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 107, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_21);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyDict_GetItem(__pyx_v_last->entries, __pyx_t_6); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 108, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyDict_GetItem(__pyx_v_last->entries, __pyx_t_21); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 107, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_context); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 108, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
+    __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
+    __pyx_t_21 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_context); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 107, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_21);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyObject_GetSlice(__pyx_t_6, __pyx_v_max_ngram, 0, NULL, NULL, NULL, 1, 0, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 108, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetSlice(__pyx_t_21, __pyx_v_max_ngram, 0, NULL, NULL, NULL, 1, 0, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 107, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = PyUnicode_Join(__pyx_kp_u__4, __pyx_t_8); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 108, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
+    __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
+    __pyx_t_21 = PyUnicode_Join(__pyx_kp_u__3, __pyx_t_8); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 107, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_21);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_23 = __Pyx_PyList_Append(__pyx_v_batch_new_scores, __pyx_t_6); if (unlikely(__pyx_t_23 == ((int)-1))) __PYX_ERR(0, 108, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __pyx_t_23 = __Pyx_PyList_Append(__pyx_v_batch_new_scores, __pyx_t_21); if (unlikely(__pyx_t_23 == ((int)-1))) __PYX_ERR(0, 107, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
 
     /* "beamsearch_cython.pyx":61
- *     cdef int current_frame_index, pred_frame_index
+ *     cdef float proon = 0.01
  * 
  *     for logits in logits_batch:             # <<<<<<<<<<<<<<
  *         logits = np.array(logits)
@@ -4995,7 +4913,7 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "beamsearch_cython.pyx":110
+  /* "beamsearch_cython.pyx":109
  *         batch_new_scores.append("".join(last.entries[last.sort()[0]].context[max_ngram:]))
  * 
  *     return batch_new_scores             # <<<<<<<<<<<<<<
@@ -5020,7 +4938,6 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
   __Pyx_XDECREF(__pyx_t_9);
-  __Pyx_XDECREF(__pyx_t_19);
   __Pyx_XDECREF(__pyx_t_20);
   __Pyx_XDECREF(__pyx_t_21);
   __Pyx_AddTraceback("beamsearch_cython.beamsearch_cy", __pyx_clineno, __pyx_lineno, __pyx_filename);
@@ -5032,7 +4949,6 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
   __Pyx_XDECREF(__pyx_v_context);
   __Pyx_XDECREF(__pyx_v_new_label);
   __Pyx_XDECREF(__pyx_v_label);
-  __Pyx_XDECREF((PyObject *)__pyx_v_top_n_idx);
   __Pyx_XDECREF(__pyx_v_current_frame_char);
   __Pyx_XDECREF(__pyx_v_logits);
   __Pyx_XDECREF(__pyx_v_label_str);
@@ -5052,6 +4968,7 @@ static PyObject *__pyx_pw_17beamsearch_cython_3beamsearch_cy(PyObject *__pyx_sel
   float __pyx_v_sub_weight;
   int __pyx_v_add_ngram;
   int __pyx_v_sub_ngram;
+  int __pyx_v_beam_width;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -5059,12 +4976,14 @@ static PyObject *__pyx_pw_17beamsearch_cython_3beamsearch_cy(PyObject *__pyx_sel
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("beamsearch_cy (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_logits_batch,&__pyx_n_s_vocab,&__pyx_n_s_lm_add,&__pyx_n_s_lm_sub,&__pyx_n_s_add_weight,&__pyx_n_s_sub_weight,&__pyx_n_s_add_ngram,&__pyx_n_s_sub_ngram,0};
-    PyObject* values[8] = {0,0,0,0,0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_logits_batch,&__pyx_n_s_vocab,&__pyx_n_s_lm_add,&__pyx_n_s_lm_sub,&__pyx_n_s_add_weight,&__pyx_n_s_sub_weight,&__pyx_n_s_add_ngram,&__pyx_n_s_sub_ngram,&__pyx_n_s_beam_width,0};
+    PyObject* values[9] = {0,0,0,0,0,0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case  9: values[8] = PyTuple_GET_ITEM(__pyx_args, 8);
+        CYTHON_FALLTHROUGH;
         case  8: values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
         CYTHON_FALLTHROUGH;
         case  7: values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
@@ -5093,49 +5012,55 @@ static PyObject *__pyx_pw_17beamsearch_cython_3beamsearch_cy(PyObject *__pyx_sel
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_vocab)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("beamsearch_cy", 1, 8, 8, 1); __PYX_ERR(0, 40, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("beamsearch_cy", 1, 9, 9, 1); __PYX_ERR(0, 40, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_lm_add)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("beamsearch_cy", 1, 8, 8, 2); __PYX_ERR(0, 40, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("beamsearch_cy", 1, 9, 9, 2); __PYX_ERR(0, 40, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_lm_sub)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("beamsearch_cy", 1, 8, 8, 3); __PYX_ERR(0, 40, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("beamsearch_cy", 1, 9, 9, 3); __PYX_ERR(0, 40, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_add_weight)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("beamsearch_cy", 1, 8, 8, 4); __PYX_ERR(0, 40, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("beamsearch_cy", 1, 9, 9, 4); __PYX_ERR(0, 40, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  5:
         if (likely((values[5] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_sub_weight)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("beamsearch_cy", 1, 8, 8, 5); __PYX_ERR(0, 40, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("beamsearch_cy", 1, 9, 9, 5); __PYX_ERR(0, 40, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  6:
         if (likely((values[6] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_add_ngram)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("beamsearch_cy", 1, 8, 8, 6); __PYX_ERR(0, 40, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("beamsearch_cy", 1, 9, 9, 6); __PYX_ERR(0, 40, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  7:
         if (likely((values[7] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_sub_ngram)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("beamsearch_cy", 1, 8, 8, 7); __PYX_ERR(0, 40, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("beamsearch_cy", 1, 9, 9, 7); __PYX_ERR(0, 40, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  8:
+        if (likely((values[8] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_beam_width)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("beamsearch_cy", 1, 9, 9, 8); __PYX_ERR(0, 40, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "beamsearch_cy") < 0)) __PYX_ERR(0, 40, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 8) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 9) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
@@ -5146,6 +5071,7 @@ static PyObject *__pyx_pw_17beamsearch_cython_3beamsearch_cy(PyObject *__pyx_sel
       values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
       values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
       values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
+      values[8] = PyTuple_GET_ITEM(__pyx_args, 8);
     }
     __pyx_v_logits_batch = ((PyObject*)values[0]);
     __pyx_v_vocab = ((PyObject*)values[1]);
@@ -5155,10 +5081,11 @@ static PyObject *__pyx_pw_17beamsearch_cython_3beamsearch_cy(PyObject *__pyx_sel
     __pyx_v_sub_weight = __pyx_PyFloat_AsFloat(values[5]); if (unlikely((__pyx_v_sub_weight == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 45, __pyx_L3_error)
     __pyx_v_add_ngram = __Pyx_PyInt_As_int(values[6]); if (unlikely((__pyx_v_add_ngram == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 46, __pyx_L3_error)
     __pyx_v_sub_ngram = __Pyx_PyInt_As_int(values[7]); if (unlikely((__pyx_v_sub_ngram == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 47, __pyx_L3_error)
+    __pyx_v_beam_width = __Pyx_PyInt_As_int(values[8]); if (unlikely((__pyx_v_beam_width == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 48, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("beamsearch_cy", 1, 8, 8, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 40, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("beamsearch_cy", 1, 9, 9, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 40, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("beamsearch_cython.beamsearch_cy", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -5166,7 +5093,7 @@ static PyObject *__pyx_pw_17beamsearch_cython_3beamsearch_cy(PyObject *__pyx_sel
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_logits_batch), (&PyList_Type), 1, "logits_batch", 1))) __PYX_ERR(0, 40, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_vocab), (&PyList_Type), 1, "vocab", 1))) __PYX_ERR(0, 41, __pyx_L1_error)
-  __pyx_r = __pyx_pf_17beamsearch_cython_2beamsearch_cy(__pyx_self, __pyx_v_logits_batch, __pyx_v_vocab, __pyx_v_lm_add, __pyx_v_lm_sub, __pyx_v_add_weight, __pyx_v_sub_weight, __pyx_v_add_ngram, __pyx_v_sub_ngram);
+  __pyx_r = __pyx_pf_17beamsearch_cython_2beamsearch_cy(__pyx_self, __pyx_v_logits_batch, __pyx_v_vocab, __pyx_v_lm_add, __pyx_v_lm_sub, __pyx_v_add_weight, __pyx_v_sub_weight, __pyx_v_add_ngram, __pyx_v_sub_ngram, __pyx_v_beam_width);
 
   /* function exit code */
   goto __pyx_L0;
@@ -5177,7 +5104,7 @@ static PyObject *__pyx_pw_17beamsearch_cython_3beamsearch_cy(PyObject *__pyx_sel
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_17beamsearch_cython_2beamsearch_cy(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_logits_batch, PyObject *__pyx_v_vocab, PyObject *__pyx_v_lm_add, PyObject *__pyx_v_lm_sub, float __pyx_v_add_weight, float __pyx_v_sub_weight, int __pyx_v_add_ngram, int __pyx_v_sub_ngram) {
+static PyObject *__pyx_pf_17beamsearch_cython_2beamsearch_cy(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_logits_batch, PyObject *__pyx_v_vocab, PyObject *__pyx_v_lm_add, PyObject *__pyx_v_lm_sub, float __pyx_v_add_weight, float __pyx_v_sub_weight, int __pyx_v_add_ngram, int __pyx_v_sub_ngram, int __pyx_v_beam_width) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5186,7 +5113,7 @@ static PyObject *__pyx_pf_17beamsearch_cython_2beamsearch_cy(CYTHON_UNUSED PyObj
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("beamsearch_cy", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_17beamsearch_cython_beamsearch_cy(__pyx_v_logits_batch, __pyx_v_vocab, __pyx_v_lm_add, __pyx_v_lm_sub, __pyx_v_add_weight, __pyx_v_sub_weight, __pyx_v_add_ngram, __pyx_v_sub_ngram, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_17beamsearch_cython_beamsearch_cy(__pyx_v_logits_batch, __pyx_v_vocab, __pyx_v_lm_add, __pyx_v_lm_sub, __pyx_v_add_weight, __pyx_v_sub_weight, __pyx_v_add_ngram, __pyx_v_sub_ngram, __pyx_v_beam_width, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5310,7 +5237,7 @@ static PyObject *__pyx_pf_17beamsearch_cython_4__pyx_unpickle_BeamList(CYTHON_UN
  */
   __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v___pyx_checksum); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_t_1, __pyx_tuple__5, Py_NE)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_t_1, __pyx_tuple__4, Py_NE)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(1, 4, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (__pyx_t_3) {
@@ -6137,7 +6064,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
  * 
  * cdef inline int import_umath() except -1:
  */
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 944, __pyx_L5_except_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 944, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -6269,7 +6196,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
  * 
  * cdef inline int import_ufunc() except -1:
  */
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 950, __pyx_L5_except_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 950, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -6401,7 +6328,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
  * 
  * cdef extern from *:
  */
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 956, __pyx_L5_except_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 956, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -6999,12 +6926,12 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_Incompatible_checksums_0x_x_vs_0, __pyx_k_Incompatible_checksums_0x_x_vs_0, sizeof(__pyx_k_Incompatible_checksums_0x_x_vs_0), 0, 0, 1, 0},
   {&__pyx_n_s_PickleError, __pyx_k_PickleError, sizeof(__pyx_k_PickleError), 0, 0, 1, 1},
   {&__pyx_n_s_SCORE, __pyx_k_SCORE, sizeof(__pyx_k_SCORE), 0, 0, 1, 1},
+  {&__pyx_kp_u__2, __pyx_k__2, sizeof(__pyx_k__2), 0, 1, 0, 0},
   {&__pyx_kp_u__3, __pyx_k__3, sizeof(__pyx_k__3), 0, 1, 0, 0},
-  {&__pyx_kp_u__4, __pyx_k__4, sizeof(__pyx_k__4), 0, 1, 0, 0},
   {&__pyx_n_s_add_ngram, __pyx_k_add_ngram, sizeof(__pyx_k_add_ngram), 0, 0, 1, 1},
   {&__pyx_n_s_add_weight, __pyx_k_add_weight, sizeof(__pyx_k_add_weight), 0, 0, 1, 1},
-  {&__pyx_n_s_argsort, __pyx_k_argsort, sizeof(__pyx_k_argsort), 0, 0, 1, 1},
   {&__pyx_n_s_array, __pyx_k_array, sizeof(__pyx_k_array), 0, 0, 1, 1},
+  {&__pyx_n_s_beam_width, __pyx_k_beam_width, sizeof(__pyx_k_beam_width), 0, 0, 1, 1},
   {&__pyx_n_s_beamsearch_cython, __pyx_k_beamsearch_cython, sizeof(__pyx_k_beamsearch_cython), 0, 0, 1, 1},
   {&__pyx_kp_s_beamsearch_cython_pyx, __pyx_k_beamsearch_cython_pyx, sizeof(__pyx_k_beamsearch_cython_pyx), 0, 0, 1, 0},
   {&__pyx_kp_u_blank, __pyx_k_blank, sizeof(__pyx_k_blank), 0, 1, 0, 0},
@@ -7088,17 +7015,6 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   PyTuple_SET_ITEM(__pyx_tuple_, 0, __pyx_kp_u_s);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "beamsearch_cython.pyx":72
- *         for t in range(T):
- *             curr = BeamList()
- *             top_n_idx = np.argsort(logits[t])[::-1][:cut_off_n]             # <<<<<<<<<<<<<<
- *             for label in last.sort()[:beam_width]:
- *                 for v in top_n_idx:
- */
-  __pyx_slice__2 = PySlice_New(Py_None, Py_None, __pyx_int_neg_1); if (unlikely(!__pyx_slice__2)) __PYX_ERR(0, 72, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_slice__2);
-  __Pyx_GIVEREF(__pyx_slice__2);
-
   /* "(tree fragment)":4
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
@@ -7106,9 +7022,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         from pickle import PickleError as __pyx_PickleError
  *         raise __pyx_PickleError("Incompatible checksums (0x%x vs (0x5fce916, 0x87d05cd, 0xc2e311d) = (entries))" % __pyx_checksum)
  */
-  __pyx_tuple__5 = PyTuple_Pack(3, __pyx_int_100460822, __pyx_int_142411213, __pyx_int_204353821); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(1, 4, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__5);
-  __Pyx_GIVEREF(__pyx_tuple__5);
+  __pyx_tuple__4 = PyTuple_Pack(3, __pyx_int_100460822, __pyx_int_142411213, __pyx_int_204353821); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__4);
+  __Pyx_GIVEREF(__pyx_tuple__4);
 
   /* "../../../nemo_env_v2/lib/python3.10/site-packages/numpy/__init__.pxd":944
  *         __pyx_import_array()
@@ -7117,9 +7033,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * cdef inline int import_umath() except -1:
  */
-  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_u_numpy_core_multiarray_failed_to); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(2, 944, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__6);
-  __Pyx_GIVEREF(__pyx_tuple__6);
+  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_u_numpy_core_multiarray_failed_to); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(2, 944, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__5);
+  __Pyx_GIVEREF(__pyx_tuple__5);
 
   /* "../../../nemo_env_v2/lib/python3.10/site-packages/numpy/__init__.pxd":950
  *         _import_umath()
@@ -7128,9 +7044,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * cdef inline int import_ufunc() except -1:
  */
-  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_u_numpy_core_umath_failed_to_impor); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(2, 950, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__7);
-  __Pyx_GIVEREF(__pyx_tuple__7);
+  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_u_numpy_core_umath_failed_to_impor); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(2, 950, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__6);
+  __Pyx_GIVEREF(__pyx_tuple__6);
 
   /* "beamsearch_cython.pyx":21
  *         return (self.__class__, (self.SCORE, self.label_out, self.context))
@@ -7139,20 +7055,20 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     return item[1].SCORE
  * 
  */
-  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_n_s_item); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 21, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__8);
-  __Pyx_GIVEREF(__pyx_tuple__8);
-  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_beamsearch_cython_pyx, __pyx_n_s_compare_score, 21, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_n_s_item); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__7);
+  __Pyx_GIVEREF(__pyx_tuple__7);
+  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_beamsearch_cython_pyx, __pyx_n_s_compare_score, 21, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) __PYX_ERR(0, 21, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_BeamList(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_tuple__10 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__10);
-  __Pyx_GIVEREF(__pyx_tuple__10);
-  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_BeamList, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__9 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__9);
+  __Pyx_GIVEREF(__pyx_tuple__9);
+  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__9, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_BeamList, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -7169,7 +7085,6 @@ static CYTHON_SMALL_CODE int __Pyx_InitGlobals(void) {
   __pyx_int_100460822 = PyInt_FromLong(100460822L); if (unlikely(!__pyx_int_100460822)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_142411213 = PyInt_FromLong(142411213L); if (unlikely(!__pyx_int_142411213)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_204353821 = PyInt_FromLong(204353821L); if (unlikely(!__pyx_int_204353821)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_int_neg_1 = PyInt_FromLong(-1); if (unlikely(!__pyx_int_neg_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -8638,35 +8553,6 @@ static CYTHON_INLINE PyObject *__Pyx_GetAttr3(PyObject *o, PyObject *n, PyObject
     return (likely(r)) ? r : __Pyx_GetAttr3Default(d);
 }
 
-/* ObjectGetItem */
-#if CYTHON_USE_TYPE_SLOTS
-static PyObject *__Pyx_PyObject_GetIndex(PyObject *obj, PyObject* index) {
-    PyObject *runerr = NULL;
-    Py_ssize_t key_value;
-    PySequenceMethods *m = Py_TYPE(obj)->tp_as_sequence;
-    if (unlikely(!(m && m->sq_item))) {
-        PyErr_Format(PyExc_TypeError, "'%.200s' object is not subscriptable", Py_TYPE(obj)->tp_name);
-        return NULL;
-    }
-    key_value = __Pyx_PyIndex_AsSsize_t(index);
-    if (likely(key_value != -1 || !(runerr = PyErr_Occurred()))) {
-        return __Pyx_GetItemInt_Fast(obj, key_value, 0, 1, 1);
-    }
-    if (PyErr_GivenExceptionMatches(runerr, PyExc_OverflowError)) {
-        PyErr_Clear();
-        PyErr_Format(PyExc_IndexError, "cannot fit '%.200s' into an index-sized integer", Py_TYPE(index)->tp_name);
-    }
-    return NULL;
-}
-static PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject* key) {
-    PyMappingMethods *m = Py_TYPE(obj)->tp_as_mapping;
-    if (likely(m && m->mp_subscript)) {
-        return m->mp_subscript(obj, key);
-    }
-    return __Pyx_PyObject_GetIndex(obj, key);
-}
-#endif
-
 /* SliceObject */
 static CYTHON_INLINE PyObject* __Pyx_PyObject_GetSlice(PyObject* obj,
         Py_ssize_t cstart, Py_ssize_t cstop,
@@ -8764,18 +8650,34 @@ bad:
     return NULL;
 }
 
-/* ExtTypeTest */
-static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type) {
-    if (unlikely(!type)) {
-        PyErr_SetString(PyExc_SystemError, "Missing type object");
-        return 0;
+/* ObjectGetItem */
+#if CYTHON_USE_TYPE_SLOTS
+static PyObject *__Pyx_PyObject_GetIndex(PyObject *obj, PyObject* index) {
+    PyObject *runerr = NULL;
+    Py_ssize_t key_value;
+    PySequenceMethods *m = Py_TYPE(obj)->tp_as_sequence;
+    if (unlikely(!(m && m->sq_item))) {
+        PyErr_Format(PyExc_TypeError, "'%.200s' object is not subscriptable", Py_TYPE(obj)->tp_name);
+        return NULL;
     }
-    if (likely(__Pyx_TypeCheck(obj, type)))
-        return 1;
-    PyErr_Format(PyExc_TypeError, "Cannot convert %.200s to %.200s",
-                 Py_TYPE(obj)->tp_name, type->tp_name);
-    return 0;
+    key_value = __Pyx_PyIndex_AsSsize_t(index);
+    if (likely(key_value != -1 || !(runerr = PyErr_Occurred()))) {
+        return __Pyx_GetItemInt_Fast(obj, key_value, 0, 1, 1);
+    }
+    if (PyErr_GivenExceptionMatches(runerr, PyExc_OverflowError)) {
+        PyErr_Clear();
+        PyErr_Format(PyExc_IndexError, "cannot fit '%.200s' into an index-sized integer", Py_TYPE(index)->tp_name);
+    }
+    return NULL;
 }
+static PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject* key) {
+    PyMappingMethods *m = Py_TYPE(obj)->tp_as_mapping;
+    if (likely(m && m->mp_subscript)) {
+        return m->mp_subscript(obj, key);
+    }
+    return __Pyx_PyObject_GetIndex(obj, key);
+}
+#endif
 
 /* BytesEquals */
 static CYTHON_INLINE int __Pyx_PyBytes_Equals(PyObject* s1, PyObject* s2, int equals) {
