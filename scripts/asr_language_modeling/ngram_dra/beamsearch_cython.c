@@ -3826,14 +3826,14 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
   /* "beamsearch_cython.pyx":59
  *     cdef str current_frame_char
  *     cdef int current_frame_index, pred_frame_index
- *     cdef float proon = 0.01             # <<<<<<<<<<<<<<
+ *     cdef float proon = log10(0.0005)             # <<<<<<<<<<<<<<
  * 
  *     for logits in logits_batch:
  */
-  __pyx_v_proon = 0.01;
+  __pyx_v_proon = log10(0.0005);
 
   /* "beamsearch_cython.pyx":61
- *     cdef float proon = 0.01
+ *     cdef float proon = log10(0.0005)
  * 
  *     for logits in logits_batch:             # <<<<<<<<<<<<<<
  *         logits = np.array(logits)
@@ -4855,7 +4855,7 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
  *                             curr.entries[new_label].context = last.entries[label].context
  *             last = curr             # <<<<<<<<<<<<<<
  *         last.normalize()
- *         batch_new_scores.append("".join(last.entries[last.sort()[0]].context[max_ngram:]))
+ * 
  */
       __Pyx_INCREF(((PyObject *)__pyx_v_curr));
       __Pyx_DECREF_SET(__pyx_v_last, __pyx_v_curr);
@@ -4865,46 +4865,46 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
  *                             curr.entries[new_label].context = last.entries[label].context
  *             last = curr
  *         last.normalize()             # <<<<<<<<<<<<<<
- *         batch_new_scores.append("".join(last.entries[last.sort()[0]].context[max_ngram:]))
  * 
+ *         batch_new_scores.append("".join(last.entries[last.sort()[0]].context[max_ngram:]))
  */
     __pyx_t_8 = ((struct __pyx_vtabstruct_17beamsearch_cython_BeamList *)__pyx_v_last->__pyx_vtab)->normalize(__pyx_v_last, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 106, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-    /* "beamsearch_cython.pyx":107
- *             last = curr
+    /* "beamsearch_cython.pyx":108
  *         last.normalize()
+ * 
  *         batch_new_scores.append("".join(last.entries[last.sort()[0]].context[max_ngram:]))             # <<<<<<<<<<<<<<
  * 
  *     return batch_new_scores
  */
     if (unlikely(__pyx_v_last->entries == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 107, __pyx_L1_error)
+      __PYX_ERR(0, 108, __pyx_L1_error)
     }
-    __pyx_t_8 = ((struct __pyx_vtabstruct_17beamsearch_cython_BeamList *)__pyx_v_last->__pyx_vtab)->sort(__pyx_v_last, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 107, __pyx_L1_error)
+    __pyx_t_8 = ((struct __pyx_vtabstruct_17beamsearch_cython_BeamList *)__pyx_v_last->__pyx_vtab)->sort(__pyx_v_last, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 108, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_21 = __Pyx_GetItemInt(__pyx_t_8, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 107, __pyx_L1_error)
+    __pyx_t_21 = __Pyx_GetItemInt(__pyx_t_8, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 108, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_21);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyDict_GetItem(__pyx_v_last->entries, __pyx_t_21); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 107, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
-    __pyx_t_21 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_context); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 107, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_21);
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyObject_GetSlice(__pyx_t_21, __pyx_v_max_ngram, 0, NULL, NULL, NULL, 1, 0, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 107, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyDict_GetItem(__pyx_v_last->entries, __pyx_t_21); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 108, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
-    __pyx_t_21 = PyUnicode_Join(__pyx_kp_u__3, __pyx_t_8); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 107, __pyx_L1_error)
+    __pyx_t_21 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_context); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 108, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_21);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_23 = __Pyx_PyList_Append(__pyx_v_batch_new_scores, __pyx_t_21); if (unlikely(__pyx_t_23 == ((int)-1))) __PYX_ERR(0, 107, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetSlice(__pyx_t_21, __pyx_v_max_ngram, 0, NULL, NULL, NULL, 1, 0, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 108, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
+    __pyx_t_21 = PyUnicode_Join(__pyx_kp_u__3, __pyx_t_8); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 108, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_21);
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __pyx_t_23 = __Pyx_PyList_Append(__pyx_v_batch_new_scores, __pyx_t_21); if (unlikely(__pyx_t_23 == ((int)-1))) __PYX_ERR(0, 108, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
 
     /* "beamsearch_cython.pyx":61
- *     cdef float proon = 0.01
+ *     cdef float proon = log10(0.0005)
  * 
  *     for logits in logits_batch:             # <<<<<<<<<<<<<<
  *         logits = np.array(logits)
@@ -4913,7 +4913,7 @@ static PyObject *__pyx_f_17beamsearch_cython_beamsearch_cy(PyObject *__pyx_v_log
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "beamsearch_cython.pyx":109
+  /* "beamsearch_cython.pyx":110
  *         batch_new_scores.append("".join(last.entries[last.sort()[0]].context[max_ngram:]))
  * 
  *     return batch_new_scores             # <<<<<<<<<<<<<<

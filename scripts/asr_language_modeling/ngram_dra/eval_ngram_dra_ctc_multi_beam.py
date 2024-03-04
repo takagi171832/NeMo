@@ -56,10 +56,10 @@ def get_parser():
     parser.add_argument("--cache_path", type=str, default="/home/takagi/NeMo/dataset/output/CSJ_to_laboro/tedx10k_chache", help="キャッシュファイルのパス")
     parser.add_argument("--use_unigram_add", action="store_true", help="加算用言語モデルにunigramを使用するかどうか")
     parser.add_argument("--use_unigram_sub", action="store_true", help="減算用言語モデルにunigramを使用するかどうか")
-    parser.add_argument("--add_lm", type=str, default="/home/takagi/NeMo/models/LM/CSJ/SPS/sps_1gram.pkl", help="加算用言語モデルのパス")
-    parser.add_argument("--sub_lm", type=str, default="/home/takagi/NeMo/models/LM/CSJ/APS/aps_1gram.pkl", help="減算用言語モデルのパス")
-    parser.add_argument("--add_weight", type=List[float] , default=[0.0,0.1,0.3,0.5,0.7], help="加算用言語モデルの重み")
-    parser.add_argument("--sub_weight", type=List[float] , default=[0.0,0.1,0.3,0.5,0.7], help="減算用言語モデルの重み")
+    parser.add_argument("--add_lm", type=str, default="/home/takagi/NeMo/models/LM/CSJ/APS/aps_1gram.pkl", help="加算用言語モデルのパス")
+    parser.add_argument("--sub_lm", type=str, default="/home/takagi/NeMo/models/LM/CSJ/SPS/sps_1gram.pkl", help="減算用言語モデルのパス")
+    parser.add_argument("--add_weight", type=List[float] , default=[0.1,0.3,0.5,0.7], help="加算用言語モデルの重み")
+    parser.add_argument("--sub_weight", type=List[float] , default=[0.1,0.3,0.5,0.7], help="減算用言語モデルの重み")
     parser.add_argument("--batch_size", type=int, default=25, help="バッチサイズ")
     parser.add_argument("--test_manifest", type=str, default="/home/takagi/NeMo/manifests/laboroTV/tedx-jp-10k/tedx-jp-10k_manifest.json", help="テストデータのパス")
     parser.add_argument("--output_folder", type=str, default="/home/takagi/NeMo/dataset/output/dra_result_beam/", help="出力先のフォルダ")
@@ -338,9 +338,8 @@ def main():
                 (i, all_probs[i * args.batch_size : (i + 1) * args.batch_size], vocab, lm_add, lm_sub, add_weight, sub_weight, add_ngram, sub_ngram, beam_width)
                 for i in range(int(math.ceil(len(all_probs) / args.batch_size)))
             ]
-            print("ここ？")
             # マルチプロセッシングとtqdmの組み合わせ
-            with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
+            with multiprocessing.Pool(processes=(multiprocessing.cpu_count() - 1)) as pool:
                 with tqdm(total=len(batch_data)) as pbar:
                     for index, result in pool.imap_unordered(process_batch, batch_data):
                         results.append((index, result))

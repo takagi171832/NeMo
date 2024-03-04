@@ -193,3 +193,4 @@ models/
 boost_1_80_0.tar.bz2
 csj2gram.arpa
 dataset/
+scripts/asr_language_modeling/ngram_dra/beamsearch_cython.c

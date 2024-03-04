@@ -56,7 +56,7 @@ cpdef beamsearch_cy(list logits_batch,
     cdef tuple context, new_label, label
     cdef str current_frame_char
     cdef int current_frame_index, pred_frame_index
-    cdef float proon = 0.01
+    cdef float proon = log10(0.0005)
 
     for logits in logits_batch:
         logits = np.array(logits)
@@ -104,6 +104,7 @@ cpdef beamsearch_cy(list logits_batch,
                             curr.entries[new_label].context = last.entries[label].context
             last = curr
         last.normalize()
+        
         batch_new_scores.append("".join(last.entries[last.sort()[0]].context[max_ngram:]))
 
     return batch_new_scores
